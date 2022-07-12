@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dimen_textSize_btn_login">18sp</dimen>
+    <dimen name="dimen_textSize_btn_register">24sp</dimen>
+    <dimen name="dimen_textSize_text_input">18sp</dimen>
+    <dimen name="dimen_textSize_text_error">14sp</dimen>
+    <dimen name="dimen_textSize_title_login">32sp</dimen>
+    <dimen name="dimen_textSize_info_another_login">14sp</dimen>
+    <dimen name="dimen_textSize_info_register">18sp</dimen>
+</resources>
