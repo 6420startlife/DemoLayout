@@ -1,5 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.ptithcm.thuan6420.basecleanarchitecture.R;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.models.LoginModel;
@@ -48,6 +50,14 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 NavHostFragment.findNavController(LoginFragment.this)
                         .navigate(R.id.action_loginFragment_to_registerFragment);
+            }
+        });
+
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(LoginFragment.this)
+                        .navigate(R.id.action_loginFragment_to_mainActivity);
             }
         });
 

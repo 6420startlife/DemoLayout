@@ -47,6 +47,14 @@ public class RegisterFragment extends Fragment {
             }
         });
 
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(RegisterFragment.this)
+                        .navigate(R.id.action_registerFragment_to_loginFragment);
+            }
+        });
+
         TextWatcher textWatcher =  new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
