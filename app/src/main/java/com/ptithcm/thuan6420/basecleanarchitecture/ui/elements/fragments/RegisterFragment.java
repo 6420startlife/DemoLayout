@@ -1,23 +1,27 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.ptithcm.thuan6420.basecleanarchitecture.R;
-import com.ptithcm.thuan6420.basecleanarchitecture.data.models.RegisterModel;
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource;
+import com.ptithcm.thuan6420.basecleanarchitecture.data.models.User;
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding;
+import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutSuccessDialogBinding;
 
-public class RegisterFragment extends Fragment {
+public class RegisterFragment extends Fragment implements TextWatcher, View.OnClickListener, View.OnFocusChangeListener {
 
     private FragmentRegisterBinding binding;
 
@@ -28,7 +32,7 @@ public class RegisterFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = FragmentRegisterBinding.inflate(inflater, container, false);
@@ -39,49 +43,72 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.tvToRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(RegisterFragment.this)
-                        .navigate(R.id.action_registerFragment_to_loginFragment);
-            }
-        });
+        binding.tvToLogin.setOnClickListener(this);
+        binding.btnRegister.setOnClickListener(this);
+        binding.layoutRegisterFragment.setOnClickListener(this);
 
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(RegisterFragment.this)
-                        .navigate(R.id.action_registerFragment_to_loginFragment);
-            }
-        });
+        binding.etEmailRegister.addTextChangedListener(this);
+        binding.etPasswordRegister.addTextChangedListener(this);
+        binding.etFullNameRegister.addTextChangedListener(this);
+        binding.etPhoneNumberRegister.addTextChangedListener(this);
 
-        TextWatcher textWatcher =  new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                registerDataChanged(binding.etEmailRegister.getText().toString().trim(),
-                        binding.etPasswordRegister.getText().toString().trim(),
-                        binding.etFullNameRegister.getText().toString().trim(),
-                        binding.etPhoneNumberRegister.getText().toString().trim());
-            }
+        binding.etEmailRegister.setOnFocusChangeListener(this);
+        binding.etPasswordRegister.setOnFocusChangeListener(this);
+        binding.etFullNameRegister.setOnFocusChangeListener(this);
+        binding.etPhoneNumberRegister.setOnFocusChangeListener(this);
+    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        registerDataChanged(binding.etEmailRegister.getText().toString().trim(),
+                binding.etPasswordRegister.getText().toString().trim(),
+                binding.etFullNameRegister.getText().toString().trim(),
+                binding.etPhoneNumberRegister.getText().toString().trim());
+    }
 
-            }
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                registerDataChanged(binding.etEmailRegister.getText().toString().trim(),
-                        binding.etPasswordRegister.getText().toString().trim(),
-                        binding.etFullNameRegister.getText().toString().trim(),
-                        binding.etPhoneNumberRegister.getText().toString().trim());
-            }
-        };
+    }
 
-        binding.etEmailRegister.addTextChangedListener(textWatcher);
-        binding.etPasswordRegister.addTextChangedListener(textWatcher);
-        binding.etFullNameRegister.addTextChangedListener(textWatcher);
-        binding.etPhoneNumberRegister.addTextChangedListener(textWatcher);
+    @Override
+    public void afterTextChanged(Editable s) {
+        registerDataChanged(binding.etEmailRegister.getText().toString().trim(),
+                binding.etPasswordRegister.getText().toString().trim(),
+                binding.etFullNameRegister.getText().toString().trim(),
+                binding.etPhoneNumberRegister.getText().toString().trim());
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+
+        if (id == binding.tvToLogin.getId()) {
+            NavHostFragment.findNavController(RegisterFragment.this)
+                    .navigate(R.id.action_registerFragment_to_loginFragment);
+        } else if (id == binding.btnRegister.getId()) {
+            register(binding.etEmailRegister.getText().toString().trim(),
+                    binding.etPasswordRegister.getText().toString().trim(),
+                    binding.etFullNameRegister.getText().toString().trim(),
+                    binding.etPhoneNumberRegister.getText().toString().trim());
+        } else if (id == binding.layoutRegisterFragment.getId()) {
+            closeKeyBoard();
+        }
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        int id = v.getId();
+
+        if (id == binding.etEmailRegister.getId()) {
+            binding.tvEmailRegisterError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+        } else if (id == binding.etPasswordRegister.getId()) {
+            binding.tvPasswordRegisterError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+        } else if (id == binding.etFullNameRegister.getId()) {
+            binding.tvFullNameRegisterError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+        } else if (id == binding.etPhoneNumberRegister.getId()) {
+            binding.tvPhoneNumberRegisterError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+        }
     }
 
     @Override
@@ -93,43 +120,83 @@ public class RegisterFragment extends Fragment {
 
     private void registerDataChanged(String email, String password, String fullName, String phoneNumber) {
 
-        RegisterModel registerModel = new RegisterModel(email, password, fullName, phoneNumber);
+        User user = new User(email, password, fullName, phoneNumber);
 
-        if (registerModel.getEmail().isEmpty()) {
-            binding.tvEmailRegisterError.setText("Email not null");
-            binding.tvEmailRegisterError.setVisibility(View.VISIBLE);
-        }else if (!registerModel.isValidEmail()) {
-            binding.tvEmailRegisterError.setText("Email is invalid");
-            binding.tvEmailRegisterError.setVisibility(View.VISIBLE);
-        }else {
-            binding.tvEmailRegisterError.setVisibility(View.GONE);
+        if (user.getEmail().isEmpty()) {
+            binding.tvEmailRegisterError.setText(R.string.error_empty_email);
+        } else if (!user.isValidEmail()) {
+            binding.tvEmailRegisterError.setText(R.string.error_invalid_email);
+        } else {
+            binding.tvEmailRegisterError.setText("");
         }
 
-        if (registerModel.getPassword().isEmpty()) {
-            binding.tvPasswordRegisterError.setText("Password not null");
-            binding.tvPasswordRegisterError.setVisibility(View.VISIBLE);
-        }else if (!registerModel.isValidPassword()) {
-            binding.tvPasswordRegisterError.setText("Password must be > 8 characters");
-            binding.tvPasswordRegisterError.setVisibility(View.VISIBLE);
-        }else {
-            binding.tvPasswordRegisterError.setVisibility(View.GONE);
+        if (user.getPassword().isEmpty()) {
+            binding.tvPasswordRegisterError.setText(R.string.error_empty_password);
+        } else if (!user.isValidPassword()) {
+            binding.tvPasswordRegisterError.setText(R.string.error_invalid_password);
+        } else {
+            binding.tvPasswordRegisterError.setText("");
         }
 
-        if (registerModel.getFullName().isEmpty()) {
-            binding.tvFullNameRegisterError.setText("Full name not null");
-            binding.tvFullNameRegisterError.setVisibility(View.VISIBLE);
-        }else {
-            binding.tvFullNameRegisterError.setVisibility(View.GONE);
+        if (user.getFullName().isEmpty()) {
+            binding.tvFullNameRegisterError.setText(R.string.error_empty_full_name);
+        } else {
+            binding.tvFullNameRegisterError.setText("");
         }
 
-        if (registerModel.getPhoneNumber().isEmpty()) {
-            binding.tvPhoneNumberRegisterError.setText("Phone number not null");
-            binding.tvPhoneNumberRegisterError.setVisibility(View.VISIBLE);
-        }else if (!registerModel.isValidPhoneNumber()) {
-            binding.tvPhoneNumberRegisterError.setText("Phone number must be 10 numbers and start by 0");
-            binding.tvPhoneNumberRegisterError.setVisibility(View.VISIBLE);
-        }else {
-            binding.tvPhoneNumberRegisterError.setVisibility(View.GONE);
+        if (user.getPhoneNumber().isEmpty()) {
+            binding.tvPhoneNumberRegisterError.setText(R.string.error_empty_phone_number);
+        } else if (!user.isValidPhoneNumber()) {
+            binding.tvPhoneNumberRegisterError.setText(R.string.error_invalid_phone_number);
+        } else {
+            binding.tvPhoneNumberRegisterError.setText("");
         }
+    }
+
+    private void register(String email, String password, String fullName, String phoneNumber) {
+        closeKeyBoard();
+        User user = new User(email, password, fullName, phoneNumber);
+        if (!user.isValidUser()) {
+            focusInvalidField(user);
+            return;
+        }
+        UserLocalDataSource.setUser(user);
+        showSuccessAlertDialog();
+    }
+
+    private void showSuccessAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
+        LayoutSuccessDialogBinding dialogBinding = LayoutSuccessDialogBinding.inflate(getLayoutInflater());
+        builder.setView(dialogBinding.getRoot());
+        dialogBinding.tvSuccessMessage.setText(R.string.message_success_register);
+        final AlertDialog alertDialog = builder.create();
+        dialogBinding.btnSuccess.setOnClickListener(v -> {
+            alertDialog.dismiss();
+            NavHostFragment.findNavController(RegisterFragment.this)
+                    .navigate(R.id.action_registerFragment_to_loginFragment);
+        });
+        alertDialog.show();
+    }
+
+    private void focusInvalidField(User user) {
+        if (user.getEmail().isEmpty() || !user.isValidEmail()) {
+            binding.etEmailRegister.requestFocus();
+        } else if (user.getPassword().isEmpty() || !user.isValidPassword()) {
+            binding.etPasswordRegister.requestFocus();
+        } else if (user.getFullName().isEmpty()) {
+            binding.etFullNameRegister.requestFocus();
+        } else if (user.getPhoneNumber().isEmpty() || !user.isValidPhoneNumber()) {
+            binding.etPhoneNumberRegister.requestFocus();
+        }
+    }
+
+    private void closeKeyBoard() {
+        View view = this.requireActivity().getCurrentFocus();
+        if (view == null) {
+            return;
+        }
+        InputMethodManager inputMethodManager = (InputMethodManager) this.requireActivity()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

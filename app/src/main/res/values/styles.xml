@@ -18,7 +18,7 @@
     </style>
     <style name="style_btn_register">
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/background_btn</item>
+        <item name="android:background">@drawable/button_bg_color</item>
         <item name="android:text">@string/string_register</item>
         <item name="android:textSize">@dimen/dimen_textSize_btn_register</item>
         <item name="fontFamily">@font/poppins_medium</item>
@@ -51,7 +51,7 @@
     </style>
     <style name="style_btn_login">
         <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/background_btn</item>
+        <item name="android:background">@drawable/button_bg_color</item>
         <item name="android:text">@string/string_login</item>
         <item name="android:textSize">@dimen/dimen_textSize_btn_login</item>
         <item name="fontFamily">@font/poppins_medium</item>
@@ -83,5 +83,9 @@
         <item name="android:textSize">@dimen/dimen_textSize_info_register</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 </resources>

@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BaseNetworkDataSource {
-    public static Gson gson;
+    private Gson gson;
     public static Retrofit retrofit;
     public static BaseApi api;
 
