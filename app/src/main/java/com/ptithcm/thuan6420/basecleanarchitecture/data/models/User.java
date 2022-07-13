@@ -6,17 +6,24 @@ import android.util.Patterns;
 
 import java.util.regex.Pattern;
 
-public class RegisterModel {
+public class User {
     private String email;
     private String password;
     private String fullName;
     private String phoneNumber;
 
-    public RegisterModel(String email, String password, String fullName, String phoneNumber) {
+    public User(String email, String password, String fullName, String phoneNumber) {
         this.email = email;
         this.password = password;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+        this.fullName = "";
+        this.phoneNumber = "";
     }
 
     public String getEmail() {
@@ -35,6 +42,22 @@ public class RegisterModel {
         return phoneNumber;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public boolean isValidEmail() {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
@@ -45,5 +68,17 @@ public class RegisterModel {
 
     public boolean isValidPhoneNumber() {
         return Pattern.compile(REGEX_PHONE_NUMBER).matcher(phoneNumber).matches();
+    }
+
+    public boolean isValidUser() {
+        return !email.isEmpty() && isValidEmail()
+                && !password.isEmpty() && isValidPassword()
+                && !fullName.isEmpty()
+                && !phoneNumber.isEmpty() && isValidPhoneNumber();
+    }
+
+    public boolean isValidLoginUser() {
+        return !email.isEmpty() && isValidEmail()
+                && !password.isEmpty() && isValidPassword();
     }
 }

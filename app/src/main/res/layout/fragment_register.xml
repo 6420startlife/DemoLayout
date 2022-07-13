@@ -9,9 +9,9 @@
     tools:context=".ui.elements.fragments.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutRegisterFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -26,7 +26,7 @@
             android:id="@+id/ivFacebookRegister"
             android:layout_width="93dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_facebook"
@@ -40,7 +40,7 @@
             android:layout_width="92dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_google"
@@ -55,7 +55,7 @@
             android:layout_width="93dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_line"
@@ -149,7 +149,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivFacebookRegister" />
 
-        <TextView
+        <Button
             android:id="@+id/btnRegister"
             style="@style/style_btn_register"
             android:layout_width="match_parent"
@@ -195,14 +195,14 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvToRegister"
+            app:layout_constraintEnd_toStartOf="@+id/tvToLogin"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
         <TextView
-            android:id="@+id/tvToRegister"
+            android:id="@+id/tvToLogin"
             style="@style/style_to_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
