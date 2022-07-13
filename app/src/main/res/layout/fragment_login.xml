@@ -9,6 +9,7 @@
     tools:context=".ui.elements.fragments.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutLoginFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -58,6 +59,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:paddingEnd="72dp"
+            android:paddingStart="0dp"
             android:drawableStart="@drawable/ic_icon_password"
             android:drawablePadding="20dp"
             android:hint="@string/hint_password"
@@ -67,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvEmailLoginError" />
 
-        <TextView
+        <Button
             android:id="@+id/btnLogin"
             style="@style/style_btn_login"
             android:layout_width="match_parent"
@@ -75,7 +77,9 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
+            android:enabled="true"
             android:padding="12dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvPasswordLoginError" />
@@ -120,7 +124,7 @@
             android:id="@+id/ivFacebookLogin"
             android:layout_width="94dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_facebook"
@@ -134,7 +138,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_line"
@@ -149,7 +153,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/background_another_login"
+            android:background="@drawable/bg_another_login_color"
             android:paddingHorizontal="32dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_icons_google"

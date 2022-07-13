@@ -14,4 +14,15 @@
     <string name="string_full_name">Full name</string>
     <string name="string_info_login">"Already have an account ? "</string>
     <string name="string_forgot">Forgot ?</string>
+    <string name="error_empty_email">Email not null</string>
+    <string name="error_invalid_email">Email is invalid</string>
+    <string name="error_empty_password">Password not null</string>
+    <string name="error_invalid_password"><![CDATA[Enter at least 9 characters]]></string>
+    <string name="error_empty_full_name">Full name not null</string>
+    <string name="error_empty_phone_number">Phone number not null</string>
+    <string name="error_invalid_phone_number">Phone number must be 10 numbers and start by 0</string>
+    <string name="message_error_login">Login failed. Please register.</string>
+    <string name="message_success_login">Login successfully</string>
+    <string name="message_success_register">Register successfully</string>
+
 </resources>
