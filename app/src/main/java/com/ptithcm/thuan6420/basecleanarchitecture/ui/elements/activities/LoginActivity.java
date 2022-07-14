@@ -1,10 +1,10 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.activities;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-
-import android.os.Bundle;
 
 import com.ptithcm.thuan6420.basecleanarchitecture.R;
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.ActivityLoginBinding;

@@ -13,5 +13,6 @@
     <color name="blue_ribbon">#0565fa</color>
     <color name="bali_hai">#7f99ab</color>
     <color name="red">#f51113</color>
+    <color name="bg_success_color">#6ED378</color>
 
 </resources>
