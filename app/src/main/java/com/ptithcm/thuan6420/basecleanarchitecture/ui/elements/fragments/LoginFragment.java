@@ -2,12 +2,10 @@ package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.fragments;
 
 import static com.ptithcm.thuan6420.basecleanarchitecture.R.string;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,10 +20,11 @@ import com.ptithcm.thuan6420.basecleanarchitecture.R;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.models.User;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.repositories.UserRepository;
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentLoginBinding;
-import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutErrorDialogBinding;
-import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutSuccessDialogBinding;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs.ErrorDialog;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs.IClickOnButtonDialogListener;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs.SuccessDialog;
 
-public class LoginFragment extends Fragment implements TextWatcher, View.OnClickListener, View.OnFocusChangeListener {
+public class LoginFragment extends Fragment implements TextWatcher, View.OnClickListener, View.OnFocusChangeListener, IClickOnButtonDialogListener {
 
     private FragmentLoginBinding binding;
 
@@ -81,8 +80,7 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
         int id = v.getId();
 
         if (id == binding.tvToRegister.getId()) {
-            NavHostFragment.findNavController(LoginFragment.this)
-                    .navigate(R.id.action_loginFragment_to_registerFragment);
+            navigateToRegisterFragment();
         } else if (id == binding.btnLogin.getId()) {
             login(binding.etEmailLogin.getText().toString().trim(),
                     binding.etPasswordLogin.getText().toString().trim());
@@ -99,6 +97,15 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
             binding.tvEmailLoginError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
         } else if (id == binding.etPasswordLogin.getId()) {
             binding.tvPasswordLoginError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    @Override
+    public void clickOnButtonDialog(int id) {
+        binding.btnLogin.setEnabled(true);
+
+        if (id == R.id.btnSuccess) {
+            navigateToMainActivity();
         }
     }
 
@@ -130,10 +137,12 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
     }
 
     private void login(String email, String password) {
+        binding.btnLogin.setEnabled(false);
         closeKeyBoard();
         User user = new User(email, password);
         if (!user.isValidLoginUser()) {
             focusInvalidField(user);
+            binding.btnLogin.setEnabled(true);
             return;
         }
         if (!UserRepository.isLoginSuccess(user)) {
@@ -144,14 +153,9 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
     }
 
     private void showErrorAlertDialog() {
-        Log.e("ErrorDialog", "Đã khởi tạo dialog");
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-        LayoutErrorDialogBinding dialogBinding = LayoutErrorDialogBinding.inflate(getLayoutInflater());
-        builder.setView(dialogBinding.getRoot());
-        dialogBinding.tvErrorMessage.setText(R.string.message_error_login);
-        final AlertDialog alertDialog = builder.create();
-        dialogBinding.btnError.setOnClickListener(v -> alertDialog.dismiss());
-        alertDialog.show();
+        ErrorDialog errorDialog = new ErrorDialog(getContext(),
+                this, string.message_error_login);
+        errorDialog.show();
     }
 
     private void focusInvalidField(User user) {
@@ -163,17 +167,19 @@ public class LoginFragment extends Fragment implements TextWatcher, View.OnClick
     }
 
     private void showSuccessAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-        LayoutSuccessDialogBinding dialogBinding = LayoutSuccessDialogBinding.inflate(getLayoutInflater());
-        builder.setView(dialogBinding.getRoot());
-        dialogBinding.tvSuccessMessage.setText(R.string.message_success_login);
-        final AlertDialog alertDialog = builder.create();
-        dialogBinding.btnSuccess.setOnClickListener(v -> {
-            alertDialog.dismiss();
-            NavHostFragment.findNavController(LoginFragment.this)
-                    .navigate(R.id.action_loginFragment_to_mainActivity);
-        });
-        alertDialog.show();
+        SuccessDialog successDialog = new SuccessDialog(getContext(),
+                this, R.string.message_success_login);
+        successDialog.show();
+    }
+
+    private void navigateToMainActivity() {
+        NavHostFragment.findNavController(LoginFragment.this)
+                .navigate(R.id.action_loginFragment_to_mainActivity);
+    }
+
+    private void navigateToRegisterFragment() {
+        NavHostFragment.findNavController(LoginFragment.this)
+                .navigate(R.id.action_loginFragment_to_registerFragment);
     }
 
     private void closeKeyBoard() {
