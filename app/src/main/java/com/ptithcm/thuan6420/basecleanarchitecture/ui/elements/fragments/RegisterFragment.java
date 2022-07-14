@@ -1,6 +1,5 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.fragments;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,9 +18,10 @@ import com.ptithcm.thuan6420.basecleanarchitecture.R;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.models.User;
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding;
-import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutSuccessDialogBinding;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs.IClickOnButtonDialogListener;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs.SuccessDialog;
 
-public class RegisterFragment extends Fragment implements TextWatcher, View.OnClickListener, View.OnFocusChangeListener {
+public class RegisterFragment extends Fragment implements TextWatcher, View.OnClickListener, View.OnFocusChangeListener, IClickOnButtonDialogListener {
 
     private FragmentRegisterBinding binding;
 
@@ -84,8 +84,7 @@ public class RegisterFragment extends Fragment implements TextWatcher, View.OnCl
         int id = v.getId();
 
         if (id == binding.tvToLogin.getId()) {
-            NavHostFragment.findNavController(RegisterFragment.this)
-                    .navigate(R.id.action_registerFragment_to_loginFragment);
+            navigateToLoginFragment();
         } else if (id == binding.btnRegister.getId()) {
             register(binding.etEmailRegister.getText().toString().trim(),
                     binding.etPasswordRegister.getText().toString().trim(),
@@ -109,6 +108,12 @@ public class RegisterFragment extends Fragment implements TextWatcher, View.OnCl
         } else if (id == binding.etPhoneNumberRegister.getId()) {
             binding.tvPhoneNumberRegisterError.setVisibility(hasFocus ? View.VISIBLE : View.GONE);
         }
+    }
+
+    @Override
+    public void clickOnButtonDialog(int id) {
+        binding.btnRegister.setEnabled(true);
+        navigateToLoginFragment();
     }
 
     @Override
@@ -154,10 +159,12 @@ public class RegisterFragment extends Fragment implements TextWatcher, View.OnCl
     }
 
     private void register(String email, String password, String fullName, String phoneNumber) {
+        binding.btnRegister.setEnabled(false);
         closeKeyBoard();
         User user = new User(email, password, fullName, phoneNumber);
         if (!user.isValidUser()) {
             focusInvalidField(user);
+            binding.btnRegister.setEnabled(true);
             return;
         }
         UserLocalDataSource.setUser(user);
@@ -165,17 +172,9 @@ public class RegisterFragment extends Fragment implements TextWatcher, View.OnCl
     }
 
     private void showSuccessAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogTheme);
-        LayoutSuccessDialogBinding dialogBinding = LayoutSuccessDialogBinding.inflate(getLayoutInflater());
-        builder.setView(dialogBinding.getRoot());
-        dialogBinding.tvSuccessMessage.setText(R.string.message_success_register);
-        final AlertDialog alertDialog = builder.create();
-        dialogBinding.btnSuccess.setOnClickListener(v -> {
-            alertDialog.dismiss();
-            NavHostFragment.findNavController(RegisterFragment.this)
-                    .navigate(R.id.action_registerFragment_to_loginFragment);
-        });
-        alertDialog.show();
+        SuccessDialog successDialog = new SuccessDialog(getContext(),
+                this, R.string.message_success_register);
+        successDialog.show();
     }
 
     private void focusInvalidField(User user) {
@@ -188,6 +187,11 @@ public class RegisterFragment extends Fragment implements TextWatcher, View.OnCl
         } else if (user.getPhoneNumber().isEmpty() || !user.isValidPhoneNumber()) {
             binding.etPhoneNumberRegister.requestFocus();
         }
+    }
+
+    private void navigateToLoginFragment() {
+        NavHostFragment.findNavController(RegisterFragment.this)
+                .navigate(R.id.action_registerFragment_to_loginFragment);
     }
 
     private void closeKeyBoard() {
