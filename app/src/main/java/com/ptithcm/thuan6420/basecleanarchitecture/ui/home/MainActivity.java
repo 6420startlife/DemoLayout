@@ -1,4 +1,4 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.activities;
+package com.ptithcm.thuan6420.basecleanarchitecture.ui.home;
 
 import android.os.Bundle;
 

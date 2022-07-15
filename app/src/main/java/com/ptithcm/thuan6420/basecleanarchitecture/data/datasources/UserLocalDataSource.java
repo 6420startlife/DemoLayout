@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences;
-import com.ptithcm.thuan6420.basecleanarchitecture.data.models.User;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User;
 
 public class UserLocalDataSource {
     private static final String PREF_REGISTERED_USER = "PREF_REGISTERED_USER";
