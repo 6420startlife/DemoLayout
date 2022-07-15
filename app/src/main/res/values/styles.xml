@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="style_btn">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/button_bg_color</item>
+        <item name="android:textSize">@dimen/dimen_textSize_btn</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="style_more_info">
+        <item name="android:textColor">@color/bali_hai</item>
+        <item name="android:textSize">@dimen/dimen_textSize_info_another_login</item>
+        <item name="fontFamily">@font/poppins</item>
+    </style>
+
     <style name="style_text_error">
         <item name="android:textColor">@color/red</item>
         <item name="android:textSize">@dimen/dimen_textSize_text_error</item>
@@ -7,6 +23,49 @@
         <item name="android:textAlignment">textStart</item>
         <item name="android:visibility">gone</item>
     </style>
+
+    <style name="style_highlight_text">
+        <item name="android:textColor">@color/blue_ribbon</item>
+        <item name="android:textSize">@dimen/dimen_textSize_highlight_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="style_title">
+        <item name="android:textColor">@color/plantation</item>
+        <item name="android:textSize">@dimen/dimen_textSize_title_login</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="style_question_text">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
+        <item name="hintTextColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">@style/style_btn</item>
+        <item name="hintTextColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TextInputLayout" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/bali_hai</item>
+        <item name="colorError">@color/red</item>
+        <item name="editTextStyle">@style/style_input_text</item>
+        <item name="android:maxWidth">@dimen/custom_max_width_input_text</item>
+        <item name="android:minWidth">@dimen/custom_min_width_input_text</item>
+    </style>
+
     <style name="style_input_text">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/dimen_textSize_text_input</item>
@@ -14,78 +73,6 @@
         <item name="android:textAlignment">viewStart</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color</item>
         <item name="android:maxLines">1</item>
-        <item name="backgroundTint">@color/bali_hai</item>
-    </style>
-    <style name="style_btn_register">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/button_bg_color</item>
-        <item name="android:text">@string/string_register</item>
-        <item name="android:textSize">@dimen/dimen_textSize_btn_register</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:textAlignment">center</item>
-    </style>
-    <style name="style_info_another_login">
-        <item name="android:text">@string/string_info_another_login</item>
-        <item name="android:textColor">@color/bali_hai</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_another_login</item>
-        <item name="fontFamily">@font/poppins</item>
-    </style>
-    <style name="style_info_another_register">
-        <item name="android:text">@string/string_info_another_register</item>
-        <item name="android:textColor">@color/bali_hai</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_another_login</item>
-        <item name="fontFamily">@font/poppins</item>
-    </style>
-    <style name="style_info_login">
-        <item name="android:text">@string/string_info_login</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_register</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-    </style>
-    <style name="style_to_login">
-        <item name="android:text">@string/string_login</item>
-        <item name="android:textColor">@color/blue_ribbon</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_register</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-    </style>
-    <style name="style_btn_login">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/button_bg_color</item>
-        <item name="android:text">@string/string_login</item>
-        <item name="android:textSize">@dimen/dimen_textSize_btn_login</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:textAlignment">center</item>
-    </style>
-    <style name="style_text_forgot">
-        <item name="android:text">@string/string_forgot</item>
-        <item name="android:textColor">@color/blue_ribbon</item>
-        <item name="android:textSize">@dimen/dimen_textSize_text_input</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:textAlignment">textEnd</item>
-    </style>
-    <style name="style_title_login">
-        <item name="android:text">@string/string_login</item>
-        <item name="android:textColor">@color/plantation</item>
-        <item name="android:textSize">@dimen/dimen_textSize_title_login</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-    </style>
-    <style name="style_info_register">
-        <item name="android:text">@string/string_info_register</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_register</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-    </style>
-    <style name="style_to_register">
-        <item name="android:text">@string/string_register</item>
-        <item name="android:textColor">@color/blue_ribbon</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_register</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-    </style>
-
-    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="backgroundTint">@color/white</item>
     </style>
 </resources>

@@ -1,4 +1,4 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.ui.elements.dialogs;
+package com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -7,14 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ptithcm.thuan6420.basecleanarchitecture.R;
-import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutSuccessDialogBinding;
+import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutErrorDialogBinding;
 
-public class SuccessDialog extends AlertDialog implements View.OnClickListener {
-    private LayoutSuccessDialogBinding binding;
+public class ErrorDialog extends AlertDialog implements View.OnClickListener {
+    private LayoutErrorDialogBinding binding;
     private final IClickOnButtonDialogListener listener;
-    private final int message;
+    private final String message;
 
-    public SuccessDialog(Context context, IClickOnButtonDialogListener iClickOnButtonDialogListener, int message) {
+    public ErrorDialog(Context context, IClickOnButtonDialogListener iClickOnButtonDialogListener, String message) {
         super(context, R.style.AlertDialogTheme);
         this.listener = iClickOnButtonDialogListener;
         this.message = message;
@@ -23,7 +23,7 @@ public class SuccessDialog extends AlertDialog implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = LayoutSuccessDialogBinding.inflate(getLayoutInflater());
+        binding = LayoutErrorDialogBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setEvent();
     }
@@ -32,15 +32,15 @@ public class SuccessDialog extends AlertDialog implements View.OnClickListener {
     public void onClick(View v) {
         int id = v.getId();
 
-        if (id == binding.btnSuccess.getId()) {
+        if (id == binding.btnError.getId()) {
             dismiss();
             listener.clickOnButtonDialog(id);
         }
     }
 
     private void setEvent() {
-        binding.tvSuccessMessage.setText(message);
-        binding.btnSuccess.setOnClickListener(this);
+        binding.tvErrorMessage.setText(message);
+        binding.btnError.setOnClickListener(this);
 
         if (getWindow() != null) {
             getWindow().setBackgroundDrawable(new ColorDrawable(0));

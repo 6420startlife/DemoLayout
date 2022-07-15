@@ -1,7 +1,7 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.repositories;
 
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource;
-import com.ptithcm.thuan6420.basecleanarchitecture.data.models.User;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User;
 
 public class UserRepository {
     private static UserRepository Instance;
@@ -17,12 +17,20 @@ public class UserRepository {
         UserLocalDataSource.setUser(user);
     }
 
-    public static boolean isLoginSuccess(User user) {
+    public static boolean isMatchedUser(User user) {
         User userInLocal = UserLocalDataSource.getUser();
         if (userInLocal == null) {
             return false;
         }
         return user.getEmail().equalsIgnoreCase(userInLocal.getEmail())
                 && user.getPassword().equalsIgnoreCase(userInLocal.getPassword());
+    }
+
+    public static boolean isExistedUser(User user) {
+        User userInLocal = UserLocalDataSource.getUser();
+        if (userInLocal == null) {
+            return false;
+        }
+        return user.getEmail().equalsIgnoreCase(userInLocal.getEmail());
     }
 }

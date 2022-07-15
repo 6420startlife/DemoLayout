@@ -1,6 +1,6 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.models;
+package com.ptithcm.thuan6420.basecleanarchitecture.ui.login;
 
-import static com.ptithcm.thuan6420.basecleanarchitecture.ui.stateholders.util.Credentials.REGEX_PHONE_NUMBER;
+import static com.ptithcm.thuan6420.basecleanarchitecture.ui.util.Credentials.REGEX_PHONE_NUMBER;
 
 import android.util.Patterns;
 
@@ -11,6 +11,9 @@ public class User {
     private String password;
     private String fullName;
     private String phoneNumber;
+
+    public User() {
+    }
 
     public User(String email, String password, String fullName, String phoneNumber) {
         this.email = email;
