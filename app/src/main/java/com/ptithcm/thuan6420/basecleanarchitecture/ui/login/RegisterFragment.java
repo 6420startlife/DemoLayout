@@ -86,6 +86,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                 .navigate(R.id.action_registerFragment_to_loginFragment);
     }
 
+    public void turnOnLoading() {
+        binding.progressBarRegister.setVisibility(View.VISIBLE);
+    }
+
+    public void turnOffLoading() {
+        binding.progressBarRegister.setVisibility(View.GONE);
+    }
+
     public void setEnabledButton(boolean enabled) {
         binding.btnRegister.setEnabled(enabled);
     }

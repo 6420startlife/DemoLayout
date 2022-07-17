@@ -192,22 +192,22 @@
                 android:id="@+id/tvInfoRegister"
                 style="@style/style_question_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/string_info_login"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineMarginBottomRegister"
                 app:layout_constraintEnd_toStartOf="@+id/tvToLogin"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="@+id/guidelineMarginLeftRegister"
+                app:layout_constraintTop_toTopOf="@+id/guidelineMarginBottomRegisterBlock" />
 
             <TextView
                 android:id="@+id/tvToLogin"
                 style="@style/style_highlight_text"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="@string/string_login"
                 app:layout_constraintBottom_toBottomOf="@+id/tvInfoRegister"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guidelineMarginRightRegister"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tvInfoRegister"
                 app:layout_constraintTop_toTopOf="@+id/tvInfoRegister" />
@@ -227,6 +227,13 @@
                 app:layout_constraintGuide_percent="0.9" />
 
             <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMarginBottomRegisterBlock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guidelineMarginBottomRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -240,6 +247,6 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

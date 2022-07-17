@@ -66,7 +66,6 @@ public class UserController {
             loginFragment.navigateToRegisterFragment();
         } else if (id == R.id.btnLogin) {
             loginFragment.setEnabledButton(false);
-            loginFragment.turnOnLoading();
             login();
         } else if (id == R.id.layoutLoginFragment) {
             closeKeyBoard(loginFragment.requireActivity());
@@ -83,16 +82,21 @@ public class UserController {
 
     private void login() {
         closeKeyBoard(loginFragment.requireActivity());
+        loginFragment.turnOnLoading();
         clearErrorMessageLogin();
         loginFragment.getValue();
         if (model.isValidLoginUser() && UserRepository.isMatchedUser(model)) {
             showSuccessAlertDialog(loginFragment, "Login successfully");
+            loginFragment.turnOffLoading();
             return;
         }
         if (model.isValidLoginUser()) {
             showErrorAlertDialog(loginFragment, "Login failed. Please register.");
+            loginFragment.turnOffLoading();
             return;
         }
+
+        loginFragment.turnOffLoading();
 
         if (model.getEmail().isEmpty()) {
             loginFragment.showErrorEmail("Email not null");
@@ -126,17 +130,21 @@ public class UserController {
 
     private void register() {
         closeKeyBoard(registerFragment.requireActivity());
+        registerFragment.turnOnLoading();
         clearErrorMessageRegister();
         registerFragment.getValue();
         if (UserRepository.isExistedUser(model)) {
+            registerFragment.turnOffLoading();
             showErrorAlertDialog(registerFragment,"Email already exists");
             return;
         }
         if (model.isValidUser()) {
             UserRepository.createUser(model);
+            registerFragment.turnOffLoading();
             showSuccessAlertDialog(registerFragment, "Register successfully");
             return;
         }
+        registerFragment.turnOffLoading();
 
         if (model.getEmail().isEmpty()) {
             registerFragment.showErrorEmail("Email not null");
@@ -162,7 +170,7 @@ public class UserController {
 
         if (model.getPassword().isEmpty()) {
             registerFragment.showErrorPhoneNumber("Phone number not null");
-        } else if (!model.isValidPassword()) {
+        } else if (!model.isValidPhoneNumber()) {
             registerFragment.showErrorPhoneNumber("Phone number must be 10 numbers and start by 0");
         } else {
             registerFragment.showErrorPhoneNumber(null);
