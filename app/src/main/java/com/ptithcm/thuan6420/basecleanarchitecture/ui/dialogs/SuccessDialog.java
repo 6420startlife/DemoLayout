@@ -14,7 +14,8 @@ public class SuccessDialog extends AlertDialog implements View.OnClickListener {
     private final IClickOnButtonDialogListener listener;
     private final String message;
 
-    public SuccessDialog(Context context, IClickOnButtonDialogListener iClickOnButtonDialogListener, String message) {
+    public SuccessDialog(Context context, IClickOnButtonDialogListener iClickOnButtonDialogListener
+            , String message) {
         super(context, R.style.AlertDialogTheme);
         this.listener = iClickOnButtonDialogListener;
         this.message = message;

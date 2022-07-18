@@ -1,24 +1,18 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.login;
 
-import android.app.Activity;
-import android.content.Context;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-
-import androidx.fragment.app.Fragment;
 
 import com.ptithcm.thuan6420.basecleanarchitecture.R;
 import com.ptithcm.thuan6420.basecleanarchitecture.data.repositories.UserRepository;
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.ErrorDialog;
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.SuccessDialog;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.components.UiController;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.DialogController;
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.util.ConstantMessage;
 
 
 public class UserController {
     private User model;
     private LoginFragment loginFragment;
     private RegisterFragment registerFragment;
-    private ErrorDialog errorDialog;
-    private SuccessDialog successDialog;
 
     public UserController(LoginFragment loginFragment) {
         this.model = new User();
@@ -34,31 +28,21 @@ public class UserController {
         model.setEmail(userEmail);
     }
 
-    public String getUserEmail() {
-        return model.getEmail();
-    }
-
-    public void setUserPassword(String userPassword)  {
+    public void setUserPassword(String userPassword) {
         model.setPassword(userPassword);
-    }
-
-    public String getUserPassword() {
-        return model.getPassword();
     }
 
     public void setUserFullName(String userFullName) {
         model.setFullName(userFullName);
     }
 
-    public String getUserFullName() {
-        return model.getFullName();
-    }
-
     public void setUserPhoneNumber(String userPhoneNumber) {
         model.setPhoneNumber(userPhoneNumber);
     }
 
-
+    /**
+     * Xử lý những thao tác sau khi nhận view.getId() từ View.onClickListener
+     */
     public void handleOnClick(View view) {
         int id = view.getId();
 
@@ -68,7 +52,7 @@ public class UserController {
             loginFragment.setEnabledButton(false);
             login();
         } else if (id == R.id.layoutLoginFragment) {
-            closeKeyBoard(loginFragment.requireActivity());
+            UiController.getInstance().closeKeyBoard(loginFragment.requireActivity());
         }
 
         if (id == R.id.tvToLogin) {
@@ -76,143 +60,125 @@ public class UserController {
         } else if (id == R.id.btnRegister) {
             register();
         } else if (id == R.id.layoutRegisterFragment) {
-            closeKeyBoard(registerFragment.requireActivity());
+            UiController.getInstance().closeKeyBoard(registerFragment.requireActivity());
         }
     }
 
+    /**
+     * Lấy dữ liệu từ view và kiểm tra xem tài khoản người dùng cung cấp từ view có hợp lệ
+     * hay không ? Nếu hợp lệ thì chuyển sang Trang làm việc chính, không thì hiển thị thông báo
+     * đăng nhập thất bại
+     */
     private void login() {
-        closeKeyBoard(loginFragment.requireActivity());
-        loginFragment.turnOnLoading();
+        UiController.getInstance().closeKeyBoard(loginFragment.requireActivity());
+        UiController.getInstance().initProgressDialog(loginFragment.getContext());
+        UiController.getInstance().turnOnLoading(loginFragment.getContext());
         clearErrorMessageLogin();
         loginFragment.getValue();
         if (model.isValidLoginUser() && UserRepository.isMatchedUser(model)) {
-            showSuccessAlertDialog(loginFragment, "Login successfully");
-            loginFragment.turnOffLoading();
+            DialogController.getInstance().showSuccessDialog(loginFragment.getContext(), id -> {
+                loginFragment.navigateToMainActivity();
+                loginFragment.setEnabledButton(true);
+            }, ConstantMessage.MESSAGE_SUCCESS_LOGIN);
+            UiController.getInstance().turnOffLoading();
             return;
         }
         if (model.isValidLoginUser()) {
-            showErrorAlertDialog(loginFragment, "Login failed. Please register.");
-            loginFragment.turnOffLoading();
+            DialogController.getInstance().showErrorDialog(loginFragment.getContext(),
+                    id -> loginFragment.setEnabledButton(true),
+                    ConstantMessage.MESSAGE_ERROR_LOGIN);
+            UiController.getInstance().turnOffLoading();
             return;
         }
 
-        loginFragment.turnOffLoading();
+        UiController.getInstance().turnOffLoading();
 
         if (model.getEmail().isEmpty()) {
-            loginFragment.showErrorEmail("Email not null");
+            loginFragment.showErrorEmail(ConstantMessage.MESSAGE_EMPTY_EMAIL);
         } else if (!model.isValidEmail()) {
-            loginFragment.showErrorEmail("Email is invalid");
+            loginFragment.showErrorEmail(ConstantMessage.MESSAGE_INVALID_EMAIL);
         } else {
             loginFragment.showErrorEmail(null);
         }
 
         if (model.getPassword().isEmpty()) {
-            loginFragment.showErrorPassword("Password not null");
+            loginFragment.showErrorPassword(ConstantMessage.MESSAGE_EMPTY_PASSWORD);
         } else if (!model.isValidPassword()) {
-            loginFragment.showErrorPassword("Enter at least 9 characters");
+            loginFragment.showErrorPassword(ConstantMessage.MESSAGE_INVALID_PASSWORD);
         } else {
-            loginFragment.showErrorPassword(null);
+            loginFragment.showErrorPassword(ConstantMessage.CLEAR_TEXT);
         }
         loginFragment.setEnabledButton(true);
     }
 
     private void clearErrorMessageLogin() {
-        loginFragment.showErrorEmail(null);
-        loginFragment.showErrorPassword(null);
+        loginFragment.showErrorEmail(ConstantMessage.CLEAR_TEXT);
+        loginFragment.showErrorPassword(ConstantMessage.CLEAR_TEXT);
     }
 
     private void clearErrorMessageRegister() {
-        registerFragment.showErrorEmail(null);
-        registerFragment.showErrorPassword(null);
-        registerFragment.showErrorFullName(null);
-        registerFragment.showErrorPhoneNumber(null);
+        registerFragment.showErrorEmail(ConstantMessage.CLEAR_TEXT);
+        registerFragment.showErrorPassword(ConstantMessage.CLEAR_TEXT);
+        registerFragment.showErrorFullName(ConstantMessage.CLEAR_TEXT);
+        registerFragment.showErrorPhoneNumber(ConstantMessage.CLEAR_TEXT);
     }
 
+    /**
+     * Lấy dữ liệu từ view và xử lý logic business để đăng ký tài khoản
+     */
     private void register() {
-        closeKeyBoard(registerFragment.requireActivity());
-        registerFragment.turnOnLoading();
+        UiController.getInstance().closeKeyBoard(registerFragment.requireActivity());
+        UiController.getInstance().initProgressDialog(registerFragment.getContext());
+        UiController.getInstance().turnOnLoading(registerFragment.getContext());
         clearErrorMessageRegister();
         registerFragment.getValue();
         if (UserRepository.isExistedUser(model)) {
-            registerFragment.turnOffLoading();
-            showErrorAlertDialog(registerFragment,"Email already exists");
+            UiController.getInstance().turnOffLoading();
+            DialogController.getInstance().showErrorDialog(registerFragment.getContext(),
+                    id -> registerFragment.setEnabledButton(true),
+                    ConstantMessage.MESSAGE_EXISTS_EMAIL);
             return;
         }
         if (model.isValidUser()) {
             UserRepository.createUser(model);
-            registerFragment.turnOffLoading();
-            showSuccessAlertDialog(registerFragment, "Register successfully");
+            UiController.getInstance().turnOffLoading();
+            DialogController.getInstance().showSuccessDialog(registerFragment.getContext(), id -> {
+                registerFragment.navigateToLoginFragment();
+                registerFragment.setEnabledButton(true);
+            }, ConstantMessage.MESSAGE_SUCCESS_REGISTER);
             return;
         }
-        registerFragment.turnOffLoading();
+        UiController.getInstance().turnOffLoading();
 
         if (model.getEmail().isEmpty()) {
-            registerFragment.showErrorEmail("Email not null");
+            registerFragment.showErrorEmail(ConstantMessage.MESSAGE_EMPTY_EMAIL);
         } else if (!model.isValidEmail()) {
-            registerFragment.showErrorEmail("Email is invalid");
+            registerFragment.showErrorEmail(ConstantMessage.MESSAGE_INVALID_EMAIL);
         } else {
-            registerFragment.showErrorEmail(null);
+            registerFragment.showErrorEmail(ConstantMessage.CLEAR_TEXT);
         }
 
         if (model.getPassword().isEmpty()) {
-            registerFragment.showErrorPassword("Password not null");
+            registerFragment.showErrorPassword(ConstantMessage.MESSAGE_EMPTY_PASSWORD);
         } else if (!model.isValidPassword()) {
-            registerFragment.showErrorPassword("Enter at least 9 characters");
+            registerFragment.showErrorPassword(ConstantMessage.MESSAGE_INVALID_PASSWORD);
         } else {
-            registerFragment.showErrorPassword(null);
+            registerFragment.showErrorPassword(ConstantMessage.CLEAR_TEXT);
         }
 
         if (model.getFullName().isEmpty()) {
-            registerFragment.showErrorFullName("Full name not null");
+            registerFragment.showErrorFullName(ConstantMessage.MESSAGE_EMPTY_FULL_NAME);
         } else {
-            registerFragment.showErrorFullName(null);
+            registerFragment.showErrorFullName(ConstantMessage.CLEAR_TEXT);
         }
 
         if (model.getPassword().isEmpty()) {
-            registerFragment.showErrorPhoneNumber("Phone number not null");
+            registerFragment.showErrorPhoneNumber(ConstantMessage.MESSAGE_EMPTY_PHONE_NUMBER);
         } else if (!model.isValidPhoneNumber()) {
-            registerFragment.showErrorPhoneNumber("Phone number must be 10 numbers and start by 0");
+            registerFragment.showErrorPhoneNumber(ConstantMessage.MESSAGE_INVALID_PHONE_NUMBER);
         } else {
-            registerFragment.showErrorPhoneNumber(null);
+            registerFragment.showErrorPhoneNumber(ConstantMessage.CLEAR_TEXT);
         }
         registerFragment.setEnabledButton(true);
-    }
-
-    private void showErrorAlertDialog(Fragment fragment, String message) {
-        if (fragment instanceof LoginFragment) {
-            errorDialog = new ErrorDialog(fragment.getContext(),
-                    id -> {
-                        loginFragment.setEnabledButton(true);
-                    }, message);
-        } else {
-            errorDialog = new ErrorDialog(fragment.getContext(),
-                    id -> {
-                        registerFragment.setEnabledButton(true);
-                    }, message);
-        }
-        errorDialog.show();
-    }
-
-    private void showSuccessAlertDialog(Fragment fragment, String message) {
-        if (fragment instanceof LoginFragment) {
-            successDialog= new SuccessDialog(fragment.getContext(),
-                    id -> loginFragment.navigateToMainActivity(), message);
-            loginFragment.setEnabledButton(true);
-        } else {
-            successDialog= new SuccessDialog(fragment.getContext(),
-                    id -> registerFragment.navigateToLoginFragment(), message);
-            registerFragment.setEnabledButton(true);
-        }
-        successDialog.show();
-    }
-
-    public void closeKeyBoard(Activity activity) {
-        View view = activity.getCurrentFocus();
-        if (view == null) {
-            return;
-        }
-        InputMethodManager inputMethodManager = (InputMethodManager) activity
-                .getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

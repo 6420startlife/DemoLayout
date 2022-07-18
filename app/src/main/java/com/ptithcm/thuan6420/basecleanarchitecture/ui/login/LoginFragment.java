@@ -59,6 +59,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         binding = null;
     }
 
+    /**
+     * lấy dữ liệu từ view để đẩy về biến model trong controller
+     */
     public void getValue() {
         userController.setUserEmail(binding.etEmailLogin.getText().toString().trim());
         userController.setUserPassword(binding.etPasswordLogin.getText().toString().trim());
@@ -80,14 +83,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void navigateToRegisterFragment() {
         NavHostFragment.findNavController(LoginFragment.this)
                 .navigate(R.id.action_loginFragment_to_registerFragment);
-    }
-
-    public void turnOnLoading() {
-        binding.progressBarLogin.setVisibility(View.VISIBLE);
-    }
-
-    public void turnOffLoading() {
-        binding.progressBarLogin.setVisibility(View.GONE);
     }
 
     public void setEnabledButton(boolean enabled) {

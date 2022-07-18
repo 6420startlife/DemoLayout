@@ -17,7 +17,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     private FragmentRegisterBinding binding;
     private UserController userController;
-
     private void initController() {
         userController = new UserController(this);
     }
@@ -58,6 +57,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         binding = null;
     }
 
+    /**
+     * lấy dữ liệu từ view để đẩy về biến model trong controller
+     */
     public void getValue() {
         userController.setUserEmail(binding.etEmailRegister.getText().toString().trim());
         userController.setUserPassword(binding.etPasswordRegister.getText().toString().trim());
@@ -84,14 +86,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     public void navigateToLoginFragment() {
         NavHostFragment.findNavController(RegisterFragment.this)
                 .navigate(R.id.action_registerFragment_to_loginFragment);
-    }
-
-    public void turnOnLoading() {
-        binding.progressBarRegister.setVisibility(View.VISIBLE);
-    }
-
-    public void turnOffLoading() {
-        binding.progressBarRegister.setVisibility(View.GONE);
     }
 
     public void setEnabledButton(boolean enabled) {

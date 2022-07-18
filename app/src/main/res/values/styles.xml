@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="style_btn">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/button_bg_color</item>
@@ -10,49 +11,42 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="style_more_info">
-        <item name="android:textColor">@color/bali_hai</item>
-        <item name="android:textSize">@dimen/dimen_textSize_info_another_login</item>
+    <style name="normal_text">
         <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">@dimen/dimen_14sp</item>
+
     </style>
 
-    <style name="style_text_error">
+    <style name="style_more_info" parent="normal_text">
+        <item name="android:textColor">@color/bali_hai</item>
+    </style>
+
+    <style name="style_text_error" parent="normal_text">
         <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">@dimen/dimen_textSize_text_error</item>
-        <item name="fontFamily">@font/poppins</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:visibility">gone</item>
     </style>
 
-    <style name="style_highlight_text">
+    <style name="bold_text">
+        <item name="android:textSize">@dimen/dimen_18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="highlight_text" parent="bold_text">
         <item name="android:textColor">@color/blue_ribbon</item>
-        <item name="android:textSize">@dimen/dimen_textSize_highlight_text</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="autoSizeMaxTextSize">100sp</item>
-        <item name="autoSizeMinTextSize">2sp</item>
-        <item name="autoSizeTextType">uniform</item>
-        <item name="autoSizeStepGranularity">1sp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
-    <style name="style_title">
+    <style name="style_title" parent="bold_text">
         <item name="android:textColor">@color/plantation</item>
-        <item name="android:textSize">@dimen/dimen_textSize_title_login</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textSize">@dimen/dimen_32dp</item>
     </style>
 
-    <style name="style_question_text">
+    <style name="style_question_text" parent="bold_text">
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="autoSizeMaxTextSize">100sp</item>
-        <item name="autoSizeMinTextSize">2sp</item>
-        <item name="autoSizeStepGranularity">1sp</item>
-        <item name="autoSizeTextType">uniform</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -78,13 +72,10 @@
         <item name="android:minWidth">@dimen/custom_min_width_input_text</item>
     </style>
 
-    <style name="style_input_text">
+    <style name="style_input_text" parent="bold_text">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">@dimen/dimen_textSize_text_input</item>
-        <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textAlignment">viewStart</item>
         <item name="android:textCursorDrawable">@drawable/cursor_color</item>
-        <item name="android:maxLines">1</item>
         <item name="backgroundTint">@color/white</item>
     </style>
 </resources>

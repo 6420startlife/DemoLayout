@@ -10,8 +10,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvLogin"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/dimen_0dp"
+        android:layout_height="@dimen/dimen_0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
             <TextView
                 android:id="@+id/tvTitleLogin"
                 style="@style/style_title"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/string_login"
                 app:layout_constraintEnd_toEndOf="@id/guidelineMarginRightLogin"
@@ -35,9 +35,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etEmailLoginLayout"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/dimen_16dp"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="@+id/guidelineMarginRightLogin"
@@ -52,15 +52,15 @@
                     android:layout_height="match_parent"
                     android:hint="@string/hint_email_id"
                     android:inputType="textEmailAddress"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="24dp" />
+                    android:paddingTop="@dimen/dimen_12dp"
+                    android:paddingBottom="@dimen/dimen_24dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etPasswordLoginLayout"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
                 android:hint="@string/hint_password"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
@@ -75,17 +75,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="24dp" />
+                    android:paddingTop="@dimen/dimen_12dp"
+                    android:paddingBottom="@dimen/dimen_24dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnLogin"
                 style="@style/style_btn"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 android:text="@string/string_login"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
                 app:layout_constraintBottom_toTopOf="@+id/tvInfoAnotherLogin"
@@ -96,10 +96,10 @@
 
             <TextView
                 android:id="@+id/tvForgot"
-                style="@style/style_highlight_text"
+                style="@style/highlight_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
                 android:text="@string/string_forgot"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="@+id/etPasswordLoginLayout"
@@ -110,7 +110,7 @@
                 style="@style/style_more_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="@dimen/dimen_16dp"
                 android:text="@string/string_info_another_login"
                 app:layout_constraintBottom_toTopOf="@+id/ivGoogleLogin"
                 app:layout_constraintEnd_toEndOf="@id/guidelineMarginRightLogin"
@@ -121,8 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="@dimen/dimen_32dp"
+                android:paddingVertical="@dimen/dimen_16dp"
                 android:src="@drawable/ic_icons_facebook"
                 app:layout_constraintEnd_toStartOf="@+id/ivLineLogin"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -133,10 +133,10 @@
                 android:id="@+id/ivLineLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="@dimen/dimen_32dp"
+                android:paddingVertical="@dimen/dimen_16dp"
                 android:src="@drawable/ic_icons_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -147,11 +147,11 @@
                 android:id="@+id/ivGoogleLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginBottom="@dimen/dimen_32dp"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="32dp"
-                android:paddingVertical="16dp"
+                android:paddingHorizontal="@dimen/dimen_32dp"
+                android:paddingVertical="@dimen/dimen_16dp"
                 android:src="@drawable/ic_icons_google"
                 app:layout_constraintBottom_toTopOf="@+id/tvInfoRegister"
                 app:layout_constraintEnd_toStartOf="@+id/ivFacebookLogin"
@@ -172,7 +172,7 @@
 
             <TextView
                 android:id="@+id/tvToRegister"
-                style="@style/style_highlight_text"
+                style="@style/highlight_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/string_register"
@@ -215,12 +215,5 @@
         app:layout_constraintHeight_percent="0.3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBarLogin"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
