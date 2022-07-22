@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -99,7 +100,6 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etEmailRegister"
-                    style="@style/Widget.App.TextInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/hint_email_id"
@@ -176,7 +176,7 @@
 
             <Button
                 android:id="@+id/btnRegister"
-
+                style="@style/style_btn"
                 android:layout_width="@dimen/dimen_0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_16dp"

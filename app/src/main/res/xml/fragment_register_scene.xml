@@ -12,7 +12,8 @@
             motion:layout_constraintHeight_percent="0.3"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible" />
+            android:visibility="visible"
+            motion:layout_constraintHorizontal_bias="0.0" />
         <Constraint
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
