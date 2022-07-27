@@ -1,216 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/white"
-    android:scrollbars="none"
-    tools:context=".ui.elements.fragments.RegisterFragment">
+    tools:context=".ui.login.view.register.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutRegisterFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_16sdp">
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:background="@drawable/login_01"
+            android:id="@+id/ivTitleLogin"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="@dimen/_130sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/login_01"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivFacebookRegister"
-            android:layout_width="93dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_another_login_color"
-            android:paddingHorizontal="32dp"
-            android:paddingVertical="16dp"
-            android:src="@drawable/ic_icons_facebook"
-            app:layout_constraintEnd_toStartOf="@+id/ivLineRegister"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ivGoogleRegister"
-            app:layout_constraintTop_toTopOf="@+id/ivGoogleRegister" />
-
-        <ImageView
-            android:id="@+id/ivGoogleRegister"
-            android:layout_width="92dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_another_login_color"
-            android:paddingHorizontal="32dp"
-            android:paddingVertical="16dp"
-            android:src="@drawable/ic_icons_google"
-            app:layout_constraintEnd_toStartOf="@+id/ivFacebookRegister"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-        <ImageView
-            android:id="@+id/ivLineRegister"
-            android:layout_width="93dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/bg_another_login_color"
-            android:paddingHorizontal="32dp"
-            android:paddingVertical="16dp"
-            android:src="@drawable/ic_icons_line"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/ivFacebookRegister"
-            app:layout_constraintTop_toTopOf="@+id/ivFacebookRegister" />
-
-        <TextView
-            android:id="@+id/tvPhoneNumberRegisterError"
-            style="@style/style_text_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/etPhoneNumberRegister"
-            app:layout_constraintTop_toBottomOf="@+id/etPhoneNumberRegister" />
-
-        <EditText
-            android:id="@+id/etEmailRegister"
-            style="@style/style_input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:drawableStart="@drawable/ic_icon_email"
-            android:drawablePadding="20dp"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvInfoAnotherRegister" />
-
-        <TextView
-            android:id="@+id/tvPasswordRegisterError"
-            style="@style/style_text_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/etPasswordRegister"
-            app:layout_constraintTop_toBottomOf="@+id/etPasswordRegister" />
-
-        <EditText
-            android:id="@+id/etPasswordRegister"
-            style="@style/style_input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:drawableStart="@drawable/ic_icon_password"
-            android:drawablePadding="20dp"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailRegisterError" />
-
-        <TextView
-            android:id="@+id/tvEmailRegisterError"
-            style="@style/style_text_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/etEmailRegister"
-            app:layout_constraintTop_toBottomOf="@+id/etEmailRegister" />
-
-        <EditText
-            android:id="@+id/etPhoneNumberRegister"
-            style="@style/style_input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:drawableStart="@drawable/ic_icon_phone"
-            android:drawablePadding="20dp"
-            android:hint="@string/hint_phone_number"
-            android:inputType="phone"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvFullNameRegisterError" />
-
-        <TextView
-            android:id="@+id/tvInfoAnotherRegister"
-            style="@style/style_info_another_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivFacebookRegister" />
-
-        <Button
-            android:id="@+id/btnRegister"
-            style="@style/style_btn_register"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:padding="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumberRegisterError" />
-
-        <TextView
-            android:id="@+id/tvFullNameRegisterError"
-            style="@style/style_text_error"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/etFullNameRegister"
-            app:layout_constraintTop_toBottomOf="@+id/etFullNameRegister" />
-
-        <EditText
-            android:id="@+id/etFullNameRegister"
-            style="@style/style_input_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:drawableStart="@drawable/ic_icon_username"
-            android:drawablePadding="20dp"
-            android:hint="@string/hint_full_name"
-            android:inputType="textPersonName"
-            android:paddingVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPasswordRegisterError" />
-
         <TextView
             android:id="@+id/tvInfoRegister"
-            style="@style/style_info_login"
+            style="@style/style_question_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="@dimen/_0dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/string_info_login"
             app:layout_constraintEnd_toStartOf="@+id/tvToLogin"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etPasswordRegisterLayout"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:endIconMode="password_toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etEmailRegisterLayout"
+            app:startIconContentDescription="@string/hint_email_id"
+            app:startIconDrawable="@drawable/ic_icon_password">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordRegister"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:paddingVertical="@dimen/_16sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:id="@+id/tvToLogin"
-            style="@style/style_to_login"
+            style="@style/highlight_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_0dp"
+            android:text="@string/string_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/tvInfoRegister"
             app:layout_constraintTop_toTopOf="@+id/tvInfoRegister" />
 
+        <ImageButton
+            android:id="@+id/ivGoogleRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@drawable/bg_another_login_color"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:src="@drawable/ic_icons_google"
+            app:layout_constraintEnd_toStartOf="@+id/ivFacebookRegister"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvInfoAnotherRegister" />
+
+        <TextView
+            android:id="@+id/tvInfoAnotherRegister"
+            style="@style/style_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="@string/string_info_another_register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivTitleLogin" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etEmailRegisterLayout"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLineRegister"
+            app:startIconContentDescription="@string/hint_email_id"
+            app:startIconDrawable="@drawable/ic_icon_email">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmailRegister"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_email_id"
+                android:inputType="textEmailAddress"
+                android:paddingVertical="@dimen/_16sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/ivLineRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:background="@drawable/bg_another_login_color"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:src="@drawable/ic_icons_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivFacebookRegister"
+            app:layout_constraintTop_toTopOf="@+id/ivFacebookRegister" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etFullNameRegisterLayout"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPasswordRegisterLayout"
+            app:startIconContentDescription="@string/hint_email_id"
+            app:startIconDrawable="@drawable/ic_icon_username">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFullNameRegister"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_full_name"
+                android:inputType="textPersonName"
+                android:paddingVertical="@dimen/_16sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/ivFacebookRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_another_login_color"
+            android:paddingHorizontal="@dimen/_28sdp"
+            android:paddingVertical="@dimen/_12sdp"
+            android:src="@drawable/ic_icons_facebook"
+            app:layout_constraintEnd_toStartOf="@+id/ivLineRegister"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/ivGoogleRegister"
+            app:layout_constraintTop_toTopOf="@+id/ivGoogleRegister" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etPhoneNumberRegisterLayout"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etFullNameRegisterLayout"
+            app:startIconContentDescription="@string/hint_email_id"
+            app:startIconDrawable="@drawable/ic_icon_phone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhoneNumberRegister"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_phone_number"
+                android:inputType="textEmailAddress"
+                android:paddingVertical="@dimen/_16sdp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            style="@style/style_btn"
+            android:layout_width="@dimen/_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:padding="@dimen/_12sdp"
+            android:text="@string/string_register"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPhoneNumberRegisterLayout" />
+
+        <ProgressBar
+            android:id="@+id/pbRegister"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

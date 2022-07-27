@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dimen_textSize_btn_login">18sp</dimen>
-    <dimen name="dimen_textSize_btn_register">24sp</dimen>
+    <dimen name="dimen_textSize_btn">18sp</dimen>
     <dimen name="dimen_textSize_text_input">18sp</dimen>
     <dimen name="dimen_textSize_text_error">14sp</dimen>
     <dimen name="dimen_textSize_title_login">32sp</dimen>
     <dimen name="dimen_textSize_info_another_login">14sp</dimen>
-    <dimen name="dimen_textSize_info_register">18sp</dimen>
+    <dimen name="dimen_textSize_highlight_text">18sp</dimen>
+    <dimen name="custom_min_width_input_text">20dp</dimen>
+    <dimen name="custom_max_width_input_text">100dp</dimen>
+    <dimen name="_8dp">8dp</dimen>
+    <dimen name="dimen_12dp">12dp</dimen>
+    <dimen name="dimen_16dp">16dp</dimen>
+    <dimen name="dimen_24dp">24dp</dimen>
+    <dimen name="dimen_32dp">32dp</dimen>
+    <dimen name="_48dp">48dp</dimen>
+    <dimen name="dimen_100dp">100dp</dimen>
+    <dimen name="dimen_200dp">200dp</dimen>
+    <dimen name="dimen_400dp">400dp</dimen>
+    <dimen name="_0dp">0dp</dimen>
+
+    <dimen name="dimen_14sp">14sp</dimen>
+    <dimen name="dimen_18sp">18sp</dimen>
+    <dimen name="dimen_32sp">32sp</dimen>
+
+
+
 </resources>
