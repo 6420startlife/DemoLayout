@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="@color/white"
-    app:layoutDescription="@xml/fragment_login_scene"
-    tools:context=".ui.login.LoginFragment">
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvLogin"
-        android:layout_width="@dimen/dimen_0dp"
-        android:layout_height="@dimen/dimen_0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+    tools:context=".ui.login.view.login.LoginFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutLoginFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_16sdp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="@dimen/_130sdp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/login_01"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvTitleLogin"
                 style="@style/style_title"
-                android:layout_width="@dimen/dimen_0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
                 android:text="@string/string_login"
-                app:layout_constraintEnd_toEndOf="@id/guidelineMarginRightLogin"
-                app:layout_constraintStart_toStartOf="@id/guidelineMarginLeftLogin"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageView" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etEmailLoginLayout"
-                android:layout_width="@dimen/dimen_0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_16dp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="@+id/guidelineMarginRightLogin"
-                app:layout_constraintStart_toStartOf="@+id/guidelineMarginLeftLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleLogin"
                 app:startIconContentDescription="@string/hint_email_id"
                 app:startIconDrawable="@drawable/ic_icon_email">
@@ -52,20 +57,21 @@
                     android:layout_height="match_parent"
                     android:hint="@string/hint_email_id"
                     android:inputType="textEmailAddress"
-                    android:paddingTop="@dimen/dimen_12dp"
-                    android:paddingBottom="@dimen/dimen_24dp" />
+                    android:paddingVertical="@dimen/_16sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etPasswordLoginLayout"
-                android:layout_width="@dimen/dimen_0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
                 android:hint="@string/hint_password"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
-                app:layout_constraintEnd_toEndOf="@+id/guidelineMarginRightLogin"
-                app:layout_constraintStart_toStartOf="@+id/guidelineMarginLeftLogin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etEmailLoginLayout"
                 app:startIconContentDescription="@string/hint_email_id"
                 app:startIconDrawable="@drawable/ic_icon_password">
@@ -75,31 +81,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-                    android:paddingTop="@dimen/dimen_12dp"
-                    android:paddingBottom="@dimen/dimen_24dp" />
+                    android:paddingVertical="@dimen/_16sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnLogin"
                 style="@style/style_btn"
-                android:layout_width="@dimen/dimen_0dp"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp"
-                android:layout_marginBottom="@dimen/dimen_16dp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:paddingVertical="@dimen/_12sdp"
                 android:text="@string/string_login"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
-                app:layout_constraintBottom_toTopOf="@+id/tvInfoAnotherLogin"
-                app:layout_constraintEnd_toEndOf="@+id/guidelineMarginRightLogin"
-                app:layout_constraintStart_toStartOf="@id/guidelineMarginLeftLogin"
-                app:layout_constraintTop_toBottomOf="@+id/tvForgot"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvForgot" />
 
             <TextView
                 android:id="@+id/tvForgot"
                 style="@style/highlight_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:text="@string/string_forgot"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="@+id/etPasswordLoginLayout"
@@ -110,65 +115,66 @@
                 style="@style/style_more_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimen_16dp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/string_info_another_login"
-                app:layout_constraintBottom_toTopOf="@+id/ivGoogleLogin"
-                app:layout_constraintEnd_toEndOf="@id/guidelineMarginRightLogin"
-                app:layout_constraintStart_toStartOf="@id/guidelineMarginLeftLogin" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivFacebookLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/dimen_32dp"
-                android:paddingVertical="@dimen/dimen_16dp"
+                android:paddingHorizontal="@dimen/_28sdp"
+                android:paddingVertical="@dimen/_12sdp"
                 android:src="@drawable/ic_icons_facebook"
                 app:layout_constraintEnd_toStartOf="@+id/ivLineLogin"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ivGoogleLogin"
                 app:layout_constraintTop_toTopOf="@+id/ivGoogleLogin" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivLineLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/dimen_32dp"
-                android:paddingVertical="@dimen/dimen_16dp"
+                android:paddingHorizontal="@dimen/_28sdp"
+                android:paddingVertical="@dimen/_12sdp"
                 android:src="@drawable/ic_icons_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/ivFacebookLogin"
                 app:layout_constraintTop_toTopOf="@+id/ivFacebookLogin" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/ivGoogleLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_8dp"
-                android:layout_marginBottom="@dimen/dimen_32dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/dimen_32dp"
-                android:paddingVertical="@dimen/dimen_16dp"
+                android:paddingHorizontal="@dimen/_28sdp"
+                android:paddingVertical="@dimen/_12sdp"
                 android:src="@drawable/ic_icons_google"
-                app:layout_constraintBottom_toTopOf="@+id/tvInfoRegister"
                 app:layout_constraintEnd_toStartOf="@+id/ivFacebookLogin"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvInfoAnotherLogin" />
 
             <TextView
                 android:id="@+id/tvInfoRegister"
                 style="@style/style_question_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:text="@string/string_info_register"
-                app:layout_constraintBottom_toTopOf="@+id/guideline4"
                 app:layout_constraintEnd_toStartOf="@+id/tvToRegister"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivLineLogin" />
 
             <TextView
                 android:id="@+id/tvToRegister"
@@ -182,38 +188,17 @@
                 app:layout_constraintStart_toEndOf="@+id/tvInfoRegister"
                 app:layout_constraintTop_toTopOf="@+id/tvInfoRegister" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineMarginLeftLogin"
+            <ProgressBar
+                android:id="@+id/pbLogin"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.1" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guidelineMarginRightLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.9" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.9" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <View
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/login_01"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.motion.widget.MotionLayout>
+</androidx.core.widget.NestedScrollView>

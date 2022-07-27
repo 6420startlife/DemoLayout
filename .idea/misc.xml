@@ -25,17 +25,19 @@
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/drawable/layout_bg_title_error_dialog.xml" value="0.162" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/drawable/layout_bg_title_success_dialog.xml" value="0.162" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout-v26/fragment_register.xml" value="0.12" />
-        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_login.xml" value="0.19384057971014493" />
-        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_main.xml" value="0.2269021739130435" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_login.xml" value="0.8" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_main.xml" value="0.8" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_blank.xml" value="0.19384057971014493" />
-        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_login.xml" value="0.176" />
-        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_register.xml" value="0.4" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_forgot_password.xml" value="0.176" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_login.xml" value="1.0" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_register.xml" value="0.7532051282051282" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_scrolling.xml" value="0.2128205128205128" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_error_dialog.xml" value="0.2269021739130435" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_login.xml" value="0.2269021739130435" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_success_dialog.xml" value="0.2269021739130435" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/progress_bar.xml" value="0.176" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/progressbar.xml" value="0.14990942028985507" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/menu/menu_only_back.xml" value="0.8666666666666667" />
       </map>
     </option>
   </component>

@@ -7,37 +7,37 @@ import android.os.Bundle
 import android.view.View
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutSuccessDialogBinding
 
-class SuccessDialog(context: Context?, iClickOnButtonDialogListener: IClickOnButtonDialogListener?,
-                    message: String?) : AlertDialog(context), View.OnClickListener {
-    private var binding: LayoutSuccessDialogBinding? = null
-    private var listener: IClickOnButtonDialogListener? = null
-    private var message: String? = null
+class SuccessDialog(
+    context: Context?, listener: DialogListener?,
+    message: String?
+) : AlertDialog(context), View.OnClickListener {
+    private lateinit var binding: LayoutSuccessDialogBinding
+    private var listener: DialogListener?
+    private var message: String?
+
     init {
-        listener = iClickOnButtonDialogListener
         this.message = message
+        this.listener = listener
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LayoutSuccessDialogBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
         setEvent()
     }
 
     override fun onClick(v: View?) {
-        val id = v!!.id
-
-        if (id == binding?.btnSuccess?.id) {
+        if (v == binding.btnSuccess) {
             dismiss()
-            listener?.clickOnButtonDialog(id)
+            listener?.onClickButtonOK()
         }
     }
+
     private fun setEvent() {
-        binding?.tvSuccessMessage?.text = message
-        binding?.btnSuccess?.setOnClickListener(this)
-        if (window != null) {
-            window!!.setBackgroundDrawable(ColorDrawable(0))
-        }
+        binding.tvSuccessMessage.text = message
+        binding.btnSuccess.setOnClickListener(this)
+        window?.setBackgroundDrawable(ColorDrawable(0))
         setCancelable(false)
     }
 }

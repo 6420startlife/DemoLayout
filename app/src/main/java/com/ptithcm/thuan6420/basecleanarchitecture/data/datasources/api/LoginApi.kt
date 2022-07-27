@@ -1,7 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api
 
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
-import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
@@ -13,7 +12,7 @@ interface LoginApi {
     suspend fun login(
         @Field("email") email : String?,
         @Field("password") password : String?
-    ): Call<ResponseLogin?>?
+    ): Response<ResponseLogin>
 
     @FormUrlEncoded
     @POST("/auth/register")
@@ -22,5 +21,5 @@ interface LoginApi {
         @Field("password") password : String?,
         @Field("name") name : String,
         @Field("phone_number") phoneNumber : Number
-    ): Call<ResponseLogin?>?
+    ): Response<ResponseRegister>
 }

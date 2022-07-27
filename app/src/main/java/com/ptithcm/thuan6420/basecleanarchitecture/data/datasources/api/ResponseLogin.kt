@@ -1,3 +1,16 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api
 
-data class ResponseLogin(val status : Int, val message : String)
+import java.util.*
+
+data class ResponseLogin(
+    val data: Data,
+    val message: String,
+    val status: Int
+)
+
+data class Data(
+    val email: String,
+    val id: Int,
+    val name: String,
+    val phone_number: String
+)

@@ -7,39 +7,35 @@ import android.os.Bundle
 import android.view.View
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.LayoutErrorDialogBinding
 
-class ErrorDialog(context: Context?, iClickOnButtonDialogListener: IClickOnButtonDialogListener?,
+class ErrorDialog(context: Context?, listener: DialogListener?,
                   message: String?) : AlertDialog(context), View.OnClickListener{
-    private var binding: LayoutErrorDialogBinding? = null
-    private var listener: IClickOnButtonDialogListener? = null
+    private lateinit var binding: LayoutErrorDialogBinding
+    private var listener: DialogListener?
     private var message: String? = null
     init {
-        listener = iClickOnButtonDialogListener
+        this.listener = listener
         this.message = message
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LayoutErrorDialogBinding.inflate(layoutInflater)
-        setContentView(binding!!.root)
+        setContentView(binding.root)
         setEvent()
     }
 
     override fun onClick(v: View?) {
         val id = v?.id
-        if (id == binding?.btnError?.id) {
+        if (id == binding.btnError.id) {
             dismiss()
-            if (id != null) {
-                listener!!.clickOnButtonDialog(id)
-            }
+            listener?.onClickButtonOK()
         }
     }
 
     private fun setEvent() {
-        binding?.tvErrorMessage?.text = message
-        binding?.btnError?.setOnClickListener(this)
-        if (window != null) {
-            window?.setBackgroundDrawable(ColorDrawable(0))
-        }
+        binding.tvErrorMessage.text = message
+        binding.btnError.setOnClickListener(this)
+        window?.setBackgroundDrawable(ColorDrawable(0))
         setCancelable(false)
     }
 }

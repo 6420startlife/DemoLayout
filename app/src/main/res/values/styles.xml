@@ -4,7 +4,7 @@
     <style name="style_btn">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/button_bg_color</item>
-        <item name="android:textSize">@dimen/dimen_textSize_btn</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
@@ -13,8 +13,16 @@
 
     <style name="normal_text">
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:textSize">@dimen/dimen_14sp</item>
+        <item name="android:textSize">@dimen/_12sdp</item>
+    </style>
 
+    <style name="bold_text">
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="autoSizeTextType">uniform</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="style_more_info" parent="normal_text">
@@ -24,16 +32,6 @@
     <style name="style_text_error" parent="normal_text">
         <item name="android:textColor">@color/red</item>
         <item name="android:textAlignment">textStart</item>
-        <item name="android:visibility">gone</item>
-    </style>
-
-    <style name="bold_text">
-        <item name="android:textSize">@dimen/dimen_18sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="autoSizeTextType">uniform</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:gravity">center_vertical</item>
     </style>
 
     <style name="highlight_text" parent="bold_text">
@@ -42,7 +40,7 @@
 
     <style name="style_title" parent="bold_text">
         <item name="android:textColor">@color/plantation</item>
-        <item name="android:textSize">@dimen/dimen_32dp</item>
+        <item name="android:textSize">@dimen/_28sdp</item>
     </style>
 
     <style name="style_question_text" parent="bold_text">
@@ -52,8 +50,10 @@
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
-
     <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnSurface">@color/bali_hai</item>
+        <item name="colorError">@color/red</item>
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <item name="hintTextColor">?attr/colorOnSurface</item>
     </style>
@@ -64,12 +64,7 @@
     </style>
 
     <style name="ThemeOverlay.App.TextInputLayout" parent="">
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorOnSurface">@color/bali_hai</item>
-        <item name="colorError">@color/red</item>
         <item name="editTextStyle">@style/style_input_text</item>
-        <item name="android:maxWidth">@dimen/custom_max_width_input_text</item>
-        <item name="android:minWidth">@dimen/custom_min_width_input_text</item>
     </style>
 
     <style name="style_input_text" parent="bold_text">
@@ -77,4 +72,5 @@
         <item name="android:textAlignment">viewStart</item>
         <item name="backgroundTint">@color/white</item>
     </style>
+
 </resources>
