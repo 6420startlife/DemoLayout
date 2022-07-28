@@ -1,10 +1,8 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.baseview
 
 import android.content.Context
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.DialogListener
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.ErrorDialog
@@ -23,16 +21,6 @@ abstract class BaseFragmentView : Fragment(), IFragmentView {
     override fun onFailure(message: String, listener : DialogListener?) {
         mErrorDialog = ErrorDialog(this.context, listener, message)
         mErrorDialog.show()
-    }
-
-    override fun turnOnLoading(button: Button, progressBar: ProgressBar) {
-        button.isEnabled = false
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun turnOffLoading(button: Button, progressBar: ProgressBar) {
-        button.isEnabled = true
-        progressBar.visibility = View.GONE
     }
 
     override fun preventSpamButton(button: Button) {

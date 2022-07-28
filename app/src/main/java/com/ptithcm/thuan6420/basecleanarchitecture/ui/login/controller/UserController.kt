@@ -44,10 +44,12 @@ class UserController(
         if (countErrorField > 0) {
             return
         }
+        baseView.turnOnLoading()
         val scope = CoroutineScope(Dispatchers.IO)
         scope.launch {
             val isSuccess = UserRepository().checkUserNetwork(email, password)
             withContext(Dispatchers.Main) {
+                baseView.turnOffLoading()
                 if (isSuccess) {
                     baseView.onSuccess(
                         ConstantMessage.MESSAGE_SUCCESS_LOGIN,
@@ -91,10 +93,12 @@ override fun onRegister(
     if (countErrorField > 0) {
         return
     }
+    baseView.turnOnLoading()
     val scope = CoroutineScope(Dispatchers.IO)
     scope.launch {
         val isSuccess = UserRepository().createUserNetwork(email, password, fullName, phoneNumber.toLong())
         withContext(Dispatchers.Main) {
+            baseView.turnOffLoading()
             if (isSuccess) {
                 baseView.onSuccess(
                     ConstantMessage.MESSAGE_SUCCESS_REGISTER,
