@@ -22,16 +22,7 @@ abstract class BaseFragmentView : Fragment(), IFragmentView {
         mErrorDialog = ErrorDialog(this.context, listener, message)
         mErrorDialog.show()
     }
-
-    override fun preventSpamButton(button: Button) {
-        val scope = CoroutineScope(Job() + Dispatchers.Main)
-        scope.launch {
-            button.isEnabled = false
-            delay(500)
-            button.isEnabled = true
-        }
-    }
-
+    
     override fun closeKeyBoard() {
         val view = this.requireActivity().currentFocus ?: return
         val inputMethodManager = this.requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE)

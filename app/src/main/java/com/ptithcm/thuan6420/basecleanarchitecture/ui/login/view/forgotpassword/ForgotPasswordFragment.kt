@@ -26,6 +26,8 @@ class ForgotPasswordFragment : BaseFragmentView(), IForgotPasswordView, OnSingle
         super.onViewCreated(view, savedInstanceState)
         binding.btnBack.setOnClickListener(this)
         binding.btnReset.setOnClickListener(this)
+        binding.layoutForgotPasswordFragment.setOnClickListener(this)
+
         val email = arguments?.getString(KEY_EMAIL_FORGOT)
         binding.etEmailForgotPassword.setText(email)
     }
@@ -45,6 +47,7 @@ class ForgotPasswordFragment : BaseFragmentView(), IForgotPasswordView, OnSingle
         when(v) {
             binding.btnBack -> navigateToLogin()
             binding.btnReset -> navigateToLogin()
+            binding.layoutForgotPasswordFragment -> closeKeyBoard()
         }
     }
 }
