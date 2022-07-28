@@ -25,6 +25,7 @@ abstract class BaseFragmentView : Fragment(), IFragmentView {
         mErrorDialog.show()
     }
 
+<<<<<<< Updated upstream
     override fun turnOnLoading(button: Button, progressBar: ProgressBar) {
         button.isEnabled = false
         progressBar.visibility = View.VISIBLE
@@ -44,6 +45,8 @@ abstract class BaseFragmentView : Fragment(), IFragmentView {
         }
     }
 
+=======
+>>>>>>> Stashed changes
     override fun closeKeyBoard() {
         val view = this.requireActivity().currentFocus ?: return
         val inputMethodManager = this.requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE)

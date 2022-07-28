@@ -21,6 +21,9 @@ class UserController(
     private var baseView: IFragmentView
     private var loginView: ILoginView?
     private var registerView: IRegisterView?
+    private val logicScope = CoroutineScope(Job() + Dispatchers.Default)
+    private val mainDispatcher = Dispatchers.Main
+    private val ioDispatcher = Dispatchers.IO
 
     init {
         this.baseView = baseView
@@ -29,17 +32,24 @@ class UserController(
     }
 
     override fun onLogin(email: String, password: String) {
-        val user = User(email, password)
-        val invalidFields = user.isValidLogin()
-        var countErrorField = 0
-        for (invalidField in invalidFields) {
-            when (invalidField.idField) {
-                ID_EMAIL_FIELD -> loginView?.showErrorEmail(invalidField.message)
-                ID_PASSWORD_FIELD -> loginView?.showErrorPassword(invalidField.message)
+        logicScope.launch {
+            val user = User(email, password)
+            val invalidFields = user.isValidLogin()
+            var countErrorField = 0
+            for (invalidField in invalidFields) {
+                when (invalidField.idField) {
+                    ID_EMAIL_FIELD -> withContext(mainDispatcher) {
+                        loginView?.showErrorEmail(invalidField.message)
+                    }
+                    ID_PASSWORD_FIELD -> withContext(mainDispatcher) {
+                        loginView?.showErrorPassword(invalidField.message)
+                    }
+                }
+                if (invalidField.message != null) {
+                    countErrorField++
+                }
             }
-            if (invalidField.message != null) {
-                countErrorField++
-            }
+<<<<<<< Updated upstream
         }
         if (countErrorField > 0) {
             return
@@ -58,39 +68,33 @@ class UserController(
                         })
                 } else {
                     baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
+=======
+            if (countErrorField == 0) {
+                withContext(mainDispatcher) {
+                    baseView.turnOnLoading()
+                }
+                withContext(ioDispatcher) {
+                    val isSuccess = UserRepository().checkUserNetwork(email, password)
+                    withContext(Dispatchers.Main) {
+                        baseView.turnOffLoading()
+                        if (isSuccess) {
+                            baseView.onSuccess(
+                                ConstantMessage.MESSAGE_SUCCESS_LOGIN,
+                                object : DialogListener {
+                                    override fun onClickButtonOK() {
+                                        loginView?.navigateToMain()
+                                    }
+                                })
+                        } else {
+                            baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
+                        }
+                    }
+>>>>>>> Stashed changes
                 }
             }
         }
-}
-
-override fun onRegister(
-    email: String,
-    password: String,
-    fullName: String,
-    phoneNumber: String
-) {
-    val user = User(
-        email,
-        password,
-        fullName,
-        phoneNumber
-    )
-    val invalidFields = user.isValidRegister()
-    var countErrorField = 0
-    for (invalidField in invalidFields) {
-        when (invalidField.idField) {
-            ID_EMAIL_FIELD -> registerView?.showErrorEmail(invalidField.message)
-            ID_PASSWORD_FIELD -> registerView?.showErrorPassword(invalidField.message)
-            ID_FULL_NAME_FIELD -> registerView?.showErrorFullName(invalidField.message)
-            ID_PHONE_NUMBER_FIELD -> registerView?.showErrorPhoneNumber(invalidField.message)
-        }
-        if (invalidField.message != null) {
-            countErrorField++
-        }
     }
-    if (countErrorField > 0) {
-        return
-    }
+<<<<<<< Updated upstream
     val scope = CoroutineScope(Dispatchers.IO)
     scope.launch {
         val isSuccess = UserRepository().createUserNetwork(email, password, fullName, phoneNumber.toLong())
@@ -101,12 +105,71 @@ override fun onRegister(
                     object : DialogListener {
                         override fun onClickButtonOK() {
                             registerView?.navigateToLogin()
+=======
+
+    override fun onRegister(
+        email: String,
+        password: String,
+        fullName: String,
+        phoneNumber: String
+    ) {
+        logicScope.launch {
+            val user = User(
+                email,
+                password,
+                fullName,
+                phoneNumber
+            )
+            val invalidFields = user.isValidRegister()
+            var countErrorField = 0
+            for (invalidField in invalidFields) {
+                when (invalidField.idField) {
+                    ID_EMAIL_FIELD -> withContext(mainDispatcher) {
+                        registerView?.showErrorEmail(invalidField.message)
+                    }
+                    ID_PASSWORD_FIELD -> withContext(mainDispatcher) {
+                        registerView?.showErrorPassword(invalidField.message)
+                    }
+                    ID_FULL_NAME_FIELD -> withContext(mainDispatcher) {
+                        registerView?.showErrorFullName(invalidField.message)
+                    }
+                    ID_PHONE_NUMBER_FIELD -> withContext(mainDispatcher) {
+                        registerView?.showErrorPhoneNumber(invalidField.message)
+                    }
+                }
+                if (invalidField.message != null) {
+                    countErrorField++
+                }
+            }
+            if (countErrorField == 0) {
+                withContext(mainDispatcher) {
+                    baseView.turnOnLoading()
+                }
+                withContext(ioDispatcher) {
+                    val state = UserRepository().createUserNetwork(
+                        email,
+                        password,
+                        fullName,
+                        phoneNumber.toLong()
+                    )
+                    if (state == null) cancel()
+                    withContext(mainDispatcher) {
+                        baseView.turnOffLoading()
+                        if (state?.status == 200) {
+                            baseView.onSuccess(
+                                ConstantMessage.MESSAGE_SUCCESS_REGISTER,
+                                object : DialogListener {
+                                    override fun onClickButtonOK() {
+                                        registerView?.navigateToLogin()
+                                    }
+                                })
+                        } else {
+                            baseView.onFailure(state?.message.toString(), null)
+>>>>>>> Stashed changes
                         }
-                    })
-            } else {
-                baseView.onFailure(ConstantMessage.MESSAGE_EXISTS_EMAIL, null)
+                    }
+                }
             }
         }
     }
-}
 }

@@ -1,8 +1,8 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources
 
 import android.content.Context
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences
 import com.google.gson.Gson
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.model.User
 
 class UserLocalDataSource {
