@@ -1,10 +1,8 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.baseview
 
 import android.content.Context
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.DialogListener
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.ErrorDialog
@@ -24,29 +22,7 @@ abstract class BaseFragmentView : Fragment(), IFragmentView {
         mErrorDialog = ErrorDialog(this.context, listener, message)
         mErrorDialog.show()
     }
-
-<<<<<<< Updated upstream
-    override fun turnOnLoading(button: Button, progressBar: ProgressBar) {
-        button.isEnabled = false
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun turnOffLoading(button: Button, progressBar: ProgressBar) {
-        button.isEnabled = true
-        progressBar.visibility = View.GONE
-    }
-
-    override fun preventSpamButton(button: Button) {
-        val scope = CoroutineScope(Job() + Dispatchers.Main)
-        scope.launch {
-            button.isEnabled = false
-            delay(500)
-            button.isEnabled = true
-        }
-    }
-
-=======
->>>>>>> Stashed changes
+    
     override fun closeKeyBoard() {
         val view = this.requireActivity().currentFocus ?: return
         val inputMethodManager = this.requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE)

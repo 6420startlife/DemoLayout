@@ -32,6 +32,12 @@ class ForgotPasswordFragment : BaseFragmentView(), IForgotPasswordView, OnSingle
         binding.etEmailForgotPassword.setText(email)
     }
 
+    override fun turnOnLoading() {
+    }
+
+    override fun turnOffLoading() {
+    }
+
     override fun navigateToLogin() {
         NavHostFragment.findNavController(this@ForgotPasswordFragment)
             .navigate(R.id.action_forgotPasswordFragment_to_loginFragment)

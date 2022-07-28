@@ -32,6 +32,14 @@ class RegisterFragment : BaseFragmentView(), IRegisterView, OnSingleClickListene
         binding.tvToLogin.setOnClickListener(this)
     }
 
+    override fun turnOnLoading() {
+        binding.pbRegister.visibility = View.VISIBLE
+    }
+
+    override fun turnOffLoading() {
+        binding.pbRegister.visibility = View.GONE
+    }
+
     override fun navigateToLogin() {
         NavHostFragment.findNavController(this@RegisterFragment)
             .navigate(R.id.action_registerFragment_to_loginFragment)

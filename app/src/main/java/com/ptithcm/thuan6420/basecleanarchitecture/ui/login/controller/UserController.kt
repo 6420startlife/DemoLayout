@@ -49,26 +49,7 @@ class UserController(
                     countErrorField++
                 }
             }
-<<<<<<< Updated upstream
-        }
-        if (countErrorField > 0) {
-            return
-        }
-        val scope = CoroutineScope(Dispatchers.IO)
-        scope.launch {
-            val isSuccess = UserRepository().checkUserNetwork(email, password)
-            withContext(Dispatchers.Main) {
-                if (isSuccess) {
-                    baseView.onSuccess(
-                        ConstantMessage.MESSAGE_SUCCESS_LOGIN,
-                        object : DialogListener {
-                            override fun onClickButtonOK() {
-                                loginView?.navigateToMain()
-                            }
-                        })
-                } else {
-                    baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
-=======
+
             if (countErrorField == 0) {
                 withContext(mainDispatcher) {
                     baseView.turnOnLoading()
@@ -89,23 +70,10 @@ class UserController(
                             baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
                         }
                     }
->>>>>>> Stashed changes
                 }
             }
         }
     }
-<<<<<<< Updated upstream
-    val scope = CoroutineScope(Dispatchers.IO)
-    scope.launch {
-        val isSuccess = UserRepository().createUserNetwork(email, password, fullName, phoneNumber.toLong())
-        withContext(Dispatchers.Main) {
-            if (isSuccess) {
-                baseView.onSuccess(
-                    ConstantMessage.MESSAGE_SUCCESS_REGISTER,
-                    object : DialogListener {
-                        override fun onClickButtonOK() {
-                            registerView?.navigateToLogin()
-=======
 
     override fun onRegister(
         email: String,
@@ -165,7 +133,6 @@ class UserController(
                                 })
                         } else {
                             baseView.onFailure(state?.message.toString(), null)
->>>>>>> Stashed changes
                         }
                     }
                 }

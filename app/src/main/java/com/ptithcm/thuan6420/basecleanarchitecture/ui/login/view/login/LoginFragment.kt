@@ -36,6 +36,14 @@ class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
         binding.tvForgot.setOnClickListener(this)
     }
 
+    override fun turnOnLoading() {
+        binding.pbLogin.visibility = View.VISIBLE
+    }
+
+    override fun turnOffLoading() {
+        binding.pbLogin.visibility = View.GONE
+    }
+
     override fun navigateToMain() {
         NavHostFragment.findNavController(this@LoginFragment)
             .navigate(R.id.action_loginFragment_to_mainActivity)
@@ -66,6 +74,7 @@ class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
             binding.btnLogin -> {
                 val email = binding.etEmailLogin.text.toString().trim()
                 val password = binding.etPasswordLogin.text.toString().trim()
+
                 userController.onLogin(email, password)
             }
             binding.layoutLoginFragment -> closeKeyBoard()
