@@ -7,7 +7,7 @@ import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.ConstantMessage.BA
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class LoginNetworkDataSource {
+class LoginNetworkDataSource() {
     private val gson: Gson = GsonBuilder()
         .setLenient()
         .create()

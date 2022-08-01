@@ -23,7 +23,6 @@ class UserController(
     private var registerView: IRegisterView?
     private val logicScope = CoroutineScope(Job() + Dispatchers.Default)
     private val mainDispatcher = Dispatchers.Main
-    private val ioDispatcher = Dispatchers.IO
 
     init {
         this.baseView = baseView
@@ -54,21 +53,20 @@ class UserController(
                 withContext(mainDispatcher) {
                     baseView.turnOnLoading()
                 }
-                withContext(ioDispatcher) {
-                    val isSuccess = UserRepository().checkUserNetwork(email, password)
-                    withContext(Dispatchers.Main) {
-                        baseView.turnOffLoading()
-                        if (isSuccess) {
-                            baseView.onSuccess(
-                                ConstantMessage.MESSAGE_SUCCESS_LOGIN,
-                                object : DialogListener {
-                                    override fun onClickButtonOK() {
-                                        loginView?.navigateToMain()
-                                    }
-                                })
-                        } else {
-                            baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
-                        }
+                val isSuccess = async { UserRepository().checkUserNetwork(email, password) }
+                val result = isSuccess.await()
+                withContext(mainDispatcher) {
+                    baseView.turnOffLoading()
+                    if (result) {
+                        baseView.onSuccess(
+                            ConstantMessage.MESSAGE_SUCCESS_LOGIN,
+                            object : DialogListener {
+                                override fun onClickButtonOK() {
+                                    loginView?.navigateToMain()
+                                }
+                            })
+                    } else {
+                        baseView.onFailure(ConstantMessage.MESSAGE_ERROR_LOGIN, null)
                     }
                 }
             }
@@ -113,27 +111,25 @@ class UserController(
                 withContext(mainDispatcher) {
                     baseView.turnOnLoading()
                 }
-                withContext(ioDispatcher) {
-                    val state = UserRepository().createUserNetwork(
-                        email,
-                        password,
-                        fullName,
-                        phoneNumber.toLong()
-                    )
-                    if (state == null) cancel()
-                    withContext(mainDispatcher) {
-                        baseView.turnOffLoading()
-                        if (state?.status == 200) {
-                            baseView.onSuccess(
-                                ConstantMessage.MESSAGE_SUCCESS_REGISTER,
-                                object : DialogListener {
-                                    override fun onClickButtonOK() {
-                                        registerView?.navigateToLogin()
-                                    }
-                                })
-                        } else {
-                            baseView.onFailure(state?.message.toString(), null)
-                        }
+                val state = UserRepository().createUserNetwork(
+                    email,
+                    password,
+                    fullName,
+                    phoneNumber.toLong()
+                )
+                if (state == null) cancel()
+                withContext(mainDispatcher) {
+                    baseView.turnOffLoading()
+                    if (state?.status == 200) {
+                        baseView.onSuccess(
+                            ConstantMessage.MESSAGE_SUCCESS_REGISTER,
+                            object : DialogListener {
+                                override fun onClickButtonOK() {
+                                    registerView?.navigateToLogin()
+                                }
+                            })
+                    } else {
+                        baseView.onFailure(state?.message.toString(), null)
                     }
                 }
             }
