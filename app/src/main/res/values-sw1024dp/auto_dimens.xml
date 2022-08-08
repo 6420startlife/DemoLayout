@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="big_space">49.83dp</dimen>
+	<dimen name="bigger_space">59.80dp</dimen>
+	<dimen name="biggest_space">79.73dp</dimen>
+	<dimen name="height_banner_image">498.30dp</dimen>
+	<dimen name="icon">119.59dp</dimen>
+	<dimen name="normal_space">39.86dp</dimen>
+	<dimen name="out_of_icon">119.59dp</dimen>
+	<dimen name="small_space">29.90dp</dimen>
+	<dimen name="smaller_space">19.93dp</dimen>
+	<dimen name="smallest_space">9.97dp</dimen>
+	<dimen name="bold_text">49.83sp</dimen>
+	<dimen name="normal_text">39.86sp</dimen>
+	<dimen name="title_text">79.73sp</dimen>
+</resources>

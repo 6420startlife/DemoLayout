@@ -1,12 +1,11 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences
 
 import android.content.Context
-import android.content.SharedPreferences
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.ConstantMessage.USER_SHARED_PREFERENCES
 
-class UserSharedPreferences(context: Context) {
-    private var context : Context = context
-    fun putUserValue(key: String?, value: String?) {
+class MySharedPreferences(val context: Context) {
+
+    fun putSharedPreferencesValue(key: String?, value: String?) {
         val sharedPreferences = context.getSharedPreferences(
             USER_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
@@ -16,15 +15,11 @@ class UserSharedPreferences(context: Context) {
         editor.apply()
     }
 
-    fun getUserValue(key: String?): String? {
+    fun getSharedPreferencesValue(key: String?): String? {
         val sharedPreferences = context.getSharedPreferences(
             USER_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
         return sharedPreferences.getString(key, "")
-    }
-
-    companion object {
-        private const val USER_SHARED_PREFERENCES = "USER_SHARED_PREFERENCES"
     }
 }

@@ -13,11 +13,11 @@ object ConstantMessage {
     const val MESSAGE_INVALID_PHONE_NUMBER = "Invalid phone number"
     const val MESSAGE_EXISTS_EMAIL = "Exists email address"
     const val MESSAGE_LOADING = "Loading ..."
+    const val MESSAGE_ERROR_VALID = "Dữ liệu nhập vào không hợp lệ"
     const val BASE_URL = "http://118.69.77.23:3002"
-    const val KEY_EMAIL_FORGOT = "email_forgot"
+    const val REGEX_PHONE_NUMBER = "^[0]{1}\\d{9}$"
 
-    const val ID_EMAIL_FIELD : Byte = 1
-    const val ID_PASSWORD_FIELD : Byte = 2
-    const val ID_FULL_NAME_FIELD : Byte = 3
-    const val ID_PHONE_NUMBER_FIELD : Byte = 4
+    const val KEY_EMAIL_FORGOT = "email_forgot"
+    const val USER_SHARED_PREFERENCES = "USER_SHARED_PREFERENCES"
+    const val PREF_REGISTERED_USER = "PREF_REGISTERED_USER"
 }

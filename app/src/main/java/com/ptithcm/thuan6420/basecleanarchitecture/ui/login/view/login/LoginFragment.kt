@@ -1,23 +1,25 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.ptithcm.thuan6420.basecleanarchitecture.R
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentLoginBinding
-
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.controller.IUserController
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.controller.UserController
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.dialogs.DialogListener
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.home.view.MainActivity
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.UserBaseFragmentView
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.viewmodel.UserViewModel
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.ConstantMessage.KEY_EMAIL_FORGOT
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.baseview.BaseFragmentView
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.baseview.OnSingleClickListener
+import kotlinx.coroutines.Job
 
-
-class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
-    private lateinit var binding : FragmentLoginBinding
-    private val userController : IUserController = UserController(this,this,null)
+class LoginFragment : UserBaseFragmentView(), OnSingleClickListener, DialogListener {
+    private lateinit var binding: FragmentLoginBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +27,13 @@ class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding.userViewModel = userViewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
+
+    override val userViewModel: UserViewModel
+        get() = initViewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,35 +41,42 @@ class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
         binding.tvToRegister.setOnClickListener(this)
         binding.layoutLoginFragment.setOnClickListener(this)
         binding.tvForgot.setOnClickListener(this)
+
     }
 
-    override fun turnOnLoading() {
-        binding.pbLogin.visibility = View.VISIBLE
+    override fun setFormValid(): Job = lifecycleScope.launchWhenCreated {
+        userViewModel.initFormLoginValid()
     }
 
-    override fun turnOffLoading() {
-        binding.pbLogin.visibility = View.GONE
+    override fun setValidate() {
+        userViewModel.errorEmail.observe(viewLifecycleOwner) {
+            binding.etEmailLoginLayout.error = userViewModel.errorEmail.value
+        }
+        userViewModel.errorPassword.observe(viewLifecycleOwner) {
+            binding.etPasswordLoginLayout.error = userViewModel.errorPassword.value
+        }
     }
 
-    override fun navigateToMain() {
-        NavHostFragment.findNavController(this@LoginFragment)
-            .navigate(R.id.action_loginFragment_to_mainActivity)
+    override fun setUiWhenLoading(status: Boolean) {
+        binding.etEmailLogin.isEnabled = status
+        binding.etPasswordLogin.isEnabled = status
     }
 
-    override fun navigateToRegister() {
+    override fun doWhenShowSuccessDialog() {
+        navigateToMain()
+    }
+
+    private fun navigateToMain() {
+        this.requireActivity().finishAffinity()
+        this.requireActivity().startActivity(Intent(this.context, MainActivity::class.java))
+    }
+
+    private fun navigateToRegister() {
         NavHostFragment.findNavController(this@LoginFragment)
             .navigate(R.id.action_loginFragment_to_registerFragment)
     }
 
-    override fun showErrorEmail(message: String?) {
-        binding.etEmailLoginLayout.error = message
-    }
-
-    override fun showErrorPassword(message: String?) {
-        binding.etPasswordLoginLayout.error = message
-    }
-
-    override fun navigateToForgotPassword() {
+    private fun navigateToForgotPassword() {
         val bundle = Bundle()
         bundle.putString(KEY_EMAIL_FORGOT, binding.etEmailLogin.text.toString().trim())
         NavHostFragment.findNavController(this@LoginFragment)
@@ -70,16 +84,15 @@ class LoginFragment : BaseFragmentView(), ILoginView, OnSingleClickListener {
     }
 
     override suspend fun onClicked(v: View?) {
-        when(v) {
-            binding.btnLogin -> {
-                val email = binding.etEmailLogin.text.toString().trim()
-                val password = binding.etPasswordLogin.text.toString().trim()
-
-                userController.onLogin(email, password)
-            }
+        when (v) {
+            binding.btnLogin -> userViewModel.login()
             binding.layoutLoginFragment -> closeKeyBoard()
             binding.tvToRegister -> navigateToRegister()
             binding.tvForgot -> navigateToForgotPassword()
         }
+    }
+
+    override fun onClickButtonOK() {
+        navigateToMain()
     }
 }

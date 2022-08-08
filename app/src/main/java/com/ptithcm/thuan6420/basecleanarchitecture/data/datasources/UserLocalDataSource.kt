@@ -2,39 +2,33 @@ package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources
 
 import android.content.Context
 import com.google.gson.Gson
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.MySharedPreferences
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.model.User
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.utility.ConstantMessage.PREF_REGISTERED_USER
 
-class UserLocalDataSource {
-    private var userSharedPreferences: UserSharedPreferences? = null
+class UserLocalDataSource () {
+    private lateinit var userSharedPreferences: MySharedPreferences
+    fun init (context: Context) {
+        userSharedPreferences = MySharedPreferences(context)
+    }
+
+    fun getUserFromLocal() : User {
+        val jsonUser = userSharedPreferences.getSharedPreferencesValue(PREF_REGISTERED_USER)
+        return Gson().fromJson(jsonUser, User::class.java)
+    }
+
+    fun setUserFromLocal(user: User) {
+        val jsonUser = Gson().toJson(user)
+        userSharedPreferences.putSharedPreferencesValue(PREF_REGISTERED_USER, jsonUser)
+    }
 
     companion object {
-        private const val PREF_REGISTERED_USER = "PREF_REGISTERED_USER"
         private var Instance: UserLocalDataSource? = null
-        fun init(context: Context) {
-            Instance = UserLocalDataSource()
-            Instance?.userSharedPreferences = UserSharedPreferences(context)
-        }
-
-        fun getInstance(): UserLocalDataSource? {
-            return if (Instance != null) {
+        operator fun invoke() = synchronized(this) {
+            if (Instance != null) {
                 Instance
-            } else UserLocalDataSource()
+            }
+            Instance = UserLocalDataSource()
         }
-
-        var user: User?
-            get() {
-                val jsonUser =
-                    getInstance()!!.userSharedPreferences!!.getUserValue(
-                        PREF_REGISTERED_USER
-                    )
-                val gson = Gson()
-                return gson.fromJson(jsonUser, User::class.java)
-            }
-            set(user) {
-                val gson = Gson()
-                val jsonUser = gson.toJson(user)
-                getInstance()!!.userSharedPreferences!!.putUserValue(PREF_REGISTERED_USER, jsonUser)
-            }
     }
 }

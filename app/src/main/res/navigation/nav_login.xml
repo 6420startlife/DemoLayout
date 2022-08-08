@@ -20,12 +20,6 @@
             app:popUpTo="@id/registerFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_loginFragment_to_mainActivity"
-            app:destination="@id/mainActivity"
-            app:launchSingleTop="true"
-            app:popUpTo="@id/mainActivity"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment"
             app:launchSingleTop="true"
@@ -48,11 +42,6 @@
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
     </fragment>
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.home.view.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.forgotpassword.ForgotPasswordFragment"

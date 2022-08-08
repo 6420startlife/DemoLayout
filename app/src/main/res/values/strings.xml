@@ -33,5 +33,6 @@
     <string name="logo_forgot_password">Please enter your email address,\nso we will send a reset link</string>
     <string name="reset">Reset</string>
     <string name="back">back</string>
+    <string name="string_username">Create by KienTT</string>
 
 </resources>

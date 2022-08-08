@@ -4,7 +4,7 @@
     <style name="style_btn">
         <item name="android:textColor">@color/white</item>
         <item name="android:background">@drawable/button_bg_color</item>
-        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textSize">@dimen/normal_text</item>
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
@@ -13,11 +13,11 @@
 
     <style name="normal_text">
         <item name="fontFamily">@font/poppins</item>
-        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textSize">@dimen/normal_text</item>
     </style>
 
     <style name="bold_text">
-        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textSize">@dimen/bold_text</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="autoSizeTextType">uniform</item>
@@ -40,7 +40,7 @@
 
     <style name="style_title" parent="bold_text">
         <item name="android:textColor">@color/plantation</item>
-        <item name="android:textSize">@dimen/_28sdp</item>
+        <item name="android:textSize">@dimen/title_text</item>
     </style>
 
     <style name="style_question_text" parent="bold_text">

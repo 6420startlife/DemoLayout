@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/white"
-    tools:context=".ui.login.view.login.LoginFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="userViewModel"
+            type="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.viewmodel.UserViewModel" />
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/white"
+        tools:context=".ui.login.view.login.LoginFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutLoginFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/_16sdp">
+            android:paddingBottom="@dimen/normal_space">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="@dimen/_0dp"
-                android:layout_height="@dimen/_130sdp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_banner_image"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/login_01"
@@ -29,20 +36,20 @@
             <TextView
                 android:id="@+id/tvTitleLogin"
                 style="@style/style_title"
-                android:layout_width="@dimen/_0dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/normal_space"
                 android:text="@string/string_login"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imageView" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etEmailLoginLayout"
-                android:layout_width="@dimen/_0dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/normal_space"
+                android:layout_marginTop="@dimen/normal_space"
+                android:layout_marginEnd="@dimen/normal_space"
                 app:endIconMode="custom"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,16 +64,17 @@
                     android:layout_height="match_parent"
                     android:hint="@string/hint_email_id"
                     android:inputType="textEmailAddress"
-                    android:paddingVertical="@dimen/_16sdp" />
+                    android:paddingVertical="@dimen/normal_space"
+                    android:text="@={userViewModel.inputEmail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etPasswordLoginLayout"
-                android:layout_width="@dimen/_0dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/normal_space"
+                android:layout_marginTop="@dimen/normal_space"
+                android:layout_marginEnd="@dimen/normal_space"
                 android:hint="@string/hint_password"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="true"
@@ -81,18 +89,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-                    android:paddingVertical="@dimen/_16sdp" />
+                    android:paddingVertical="@dimen/normal_space"
+                    android:text="@={userViewModel.inputPassword}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnLogin"
                 style="@style/style_btn"
-                android:layout_width="@dimen/_0dp"
+                android:id="@+id/btnLogin"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:paddingVertical="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/normal_space"
+                android:layout_marginTop="@dimen/smaller_space"
+                android:layout_marginEnd="@dimen/normal_space"
+                android:paddingVertical="@dimen/small_space"
                 android:text="@string/string_login"
                 android:textAppearance="@style/TextAppearance.AppCompat.Button"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +113,7 @@
                 style="@style/highlight_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/smaller_space"
                 android:text="@string/string_forgot"
                 android:textAlignment="textEnd"
                 app:layout_constraintEnd_toEndOf="@+id/etPasswordLoginLayout"
@@ -115,7 +124,7 @@
                 style="@style/style_more_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/normal_space"
                 android:text="@string/string_info_another_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,8 +135,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/_28sdp"
-                android:paddingVertical="@dimen/_12sdp"
+                android:paddingHorizontal="@dimen/biggest_space"
+                android:paddingVertical="@dimen/small_space"
                 android:src="@drawable/ic_icons_facebook"
                 app:layout_constraintEnd_toStartOf="@+id/ivLineLogin"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -138,10 +147,10 @@
                 android:id="@+id/ivLineLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/smaller_space"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/_28sdp"
-                android:paddingVertical="@dimen/_12sdp"
+                android:paddingHorizontal="@dimen/biggest_space"
+                android:paddingVertical="@dimen/small_space"
                 android:src="@drawable/ic_icons_line"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -152,11 +161,11 @@
                 android:id="@+id/ivGoogleLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/normal_space"
+                android:layout_marginEnd="@dimen/smaller_space"
                 android:background="@drawable/bg_another_login_color"
-                android:paddingHorizontal="@dimen/_28sdp"
-                android:paddingVertical="@dimen/_12sdp"
+                android:paddingHorizontal="@dimen/biggest_space"
+                android:paddingVertical="@dimen/small_space"
                 android:src="@drawable/ic_icons_google"
                 app:layout_constraintEnd_toStartOf="@+id/ivFacebookLogin"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -169,7 +178,7 @@
                 style="@style/style_question_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/normal_space"
                 android:text="@string/string_info_register"
                 app:layout_constraintEnd_toStartOf="@+id/tvToRegister"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -197,8 +206,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="gone"/>
+                android:visibility="@{userViewModel.isUpdating() ? View.VISIBLE : View.GONE}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
+</layout>
