@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".data.datasources.MyApplication"
+        android:name=".data.datasources.App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:usesCleartextTraffic="true"
@@ -17,18 +17,24 @@
         android:theme="@style/Theme.BaseCleanArchitecture"
         tools:targetApi="31">
         <activity
-            android:name=".ui.home.view.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.view.LoginActivity"
-            android:exported="true"
+            android:name=".ui.login.LoginActivity"
+            android:exported="false"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false">
+        </activity>
+        <activity-alias
+            android:name="runActivity"
+            android:targetActivity=".ui.login.LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <meta-data
             android:name="preloaded_fonts"

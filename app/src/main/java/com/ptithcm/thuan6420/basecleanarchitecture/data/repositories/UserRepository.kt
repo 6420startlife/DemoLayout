@@ -1,37 +1,31 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.repositories
 
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.LoginNetworkDataSource
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDbDataSource
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ResponseRegister
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.model.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.UserDao
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
-class UserRepository(private val localDataSource: UserLocalDbDataSource) {
-    private val ioDispatchers = Dispatchers.IO
-    val user = localDataSource.latestUser
+class UserRepository(private val apiHelper: ApiHelper, private val dao: UserDao) {
 
-    suspend fun createUserInRoom(user: User) = withContext(ioDispatchers) {
-        localDataSource.create(user)
+    val latestUsers: Flow<List<User>> = flow {
+        val latestUsers = dao.getAll()
+        emit(latestUsers)
     }
 
-    suspend fun checkUserInRoom(user: User): Boolean = withContext(ioDispatchers) {
-        val userInRoom = localDataSource.findByEmail(user.email)
-        return@withContext userInRoom.password == user.password
+    suspend fun findByEmail(email: String) = dao.findByEmail(email)
+
+    suspend fun create(user: User) {
+        dao.createAnUser(user)
     }
 
-    suspend fun updateUserInRoom(user: User) = withContext(ioDispatchers) {
-        localDataSource.update(user)
+    suspend fun update(user: User) {
+        dao.updateAnUser(user)
     }
 
-    suspend fun deleteUserInRoom(user: User) = withContext(ioDispatchers) {
-        localDataSource.delete(user)
-    }
-
-    suspend fun findUserFromRoom(email: String) = withContext(ioDispatchers) {
-        localDataSource.findByEmail(email)
+    suspend fun delete(user: User) {
+        dao.deleteAnUser(user)
     }
 
     fun createUserBySharedPreferences(user: User) {
@@ -39,38 +33,20 @@ class UserRepository(private val localDataSource: UserLocalDbDataSource) {
     }
 
     fun isMatchedUserSharedPreferences(user: User): Boolean {
-        val (email, password) = UserLocalDataSource().getUserFromLocal()
+        val (id, email, password) = UserLocalDataSource().getUserFromLocal()
         return (user.email == email
                 && user.password == password)
     }
 
     fun isExistedUserSharedPreferences(user: User): Boolean {
-        val (email) = UserLocalDataSource().getUserFromLocal()
+        val (id, email) = UserLocalDataSource().getUserFromLocal()
         return user.email == email
     }
 
-    suspend fun createUserNetwork(
+    suspend fun register(
         email: String, password: String,
         fullName: String, phoneNumber: Number
-    ): ResponseRegister? = withContext(ioDispatchers) {
-        val response =
-            LoginNetworkDataSource().loginApi.register(email, password, fullName, phoneNumber)
-        delay(6000)
-        return@withContext if (response.isSuccessful) {
-            response.body()
-        } else {
-            null
-        }
-    }
+    ) = apiHelper.register(email, password, fullName, phoneNumber)
 
-    suspend fun checkUserNetwork(email: String, password: String): Boolean =
-        withContext(ioDispatchers) {
-            val response = LoginNetworkDataSource().loginApi.login(email, password)
-            delay(6000)
-            return@withContext if (response.isSuccessful) {
-                response.body()?.status == 200
-            } else {
-                false
-            }
-        }
+    suspend fun login(email: String, password: String) = apiHelper.login(email, password)
 }

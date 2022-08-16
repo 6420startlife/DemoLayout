@@ -15,4 +15,7 @@
     <dimen name="bigger_space">24dp</dimen>
     <dimen name="big_space">20dp</dimen>
     <dimen name="out_of_icon">48dp</dimen>
+    <dimen name="item_food_width">200dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
+    <dimen name="padding_vertical_text_field">16dp</dimen>
 </resources>

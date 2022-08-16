@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.login.LoginFragment"
+        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.register.RegisterFragment"
+        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.view.forgotpassword.ForgotPasswordFragment"
+        android:name="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.forgotpassword.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action

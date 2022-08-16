@@ -1,8 +1,7 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room
 
 import androidx.room.*
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.model.User
-import kotlinx.coroutines.flow.Flow
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
 
 @Dao
 interface UserDao {

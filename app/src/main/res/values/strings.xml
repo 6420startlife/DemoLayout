@@ -24,15 +24,16 @@
     <string name="message_error_login">Login failed. Please register.</string>
     <string name="message_success_login">Login successfully</string>
     <string name="message_success_register">Register successfully</string>
-    <string name="string_ok">Ok</string>
-    <string name="string_success">Success</string>
-    <string name="string_error">Error</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ok">Ok</string>
+    <string name="success">Success</string>
+    <string name="error">Error</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forgot_password">Forgot password ?</string>
     <string name="logo_forgot_password">Please enter your email address,\nso we will send a reset link</string>
     <string name="reset">Reset</string>
     <string name="back">back</string>
     <string name="string_username">Create by KienTT</string>
+    <string name="string_name_food">Bánh pizza</string>
+    <string name="string_price_food">20.000đ</string>
 
 </resources>

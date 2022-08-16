@@ -15,6 +15,14 @@
     <color name="blue_sky">#03A9F4</color>
     <color name="bali_hai">#7f99ab</color>
     <color name="red">#f51113</color>
-    <color name="bg_success_color">#6ED378</color>
-
+    <color name="pink">#9C27B0</color>
+    <color name="black_color" >#FF000000</color>
+    <color name="white_color">#FFFFFFfF</color>
+    <color name="default_color">#FAFAFA</color>
+    <color name="blue_color">#2196F3</color>
+    <color name="blue_ribbon_color">#0565fa</color>
+    <color name="success_color">#77FD7C</color>
+    <color name="error_color">#E80B0B</color>
+    <color name="disable_color">#AAAAAA</color>
+    <color name="pressed_color">#00DDFF</color>
 </resources>

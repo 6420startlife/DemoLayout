@@ -5,11 +5,13 @@
 	<dimen name="biggest_space">298.98dp</dimen>
 	<dimen name="height_banner_image">1868.61dp</dimen>
 	<dimen name="icon">448.47dp</dimen>
+	<dimen name="item_food_width">1868.61dp</dimen>
 	<dimen name="normal_space">149.49dp</dimen>
 	<dimen name="out_of_icon">448.47dp</dimen>
 	<dimen name="small_space">112.12dp</dimen>
 	<dimen name="smaller_space">74.74dp</dimen>
 	<dimen name="smallest_space">37.37dp</dimen>
+	<dimen name="stroke_width">9.34dp</dimen>
 	<dimen name="bold_text">186.86sp</dimen>
 	<dimen name="normal_text">149.49sp</dimen>
 	<dimen name="title_text">298.98sp</dimen>

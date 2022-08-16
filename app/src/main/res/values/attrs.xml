@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EmailTextField" >
+    </declare-styleable>
+    <declare-styleable name="PhoneNumberTextField" >
+    </declare-styleable>
+    <declare-styleable name="PasswordTextField" >
+    </declare-styleable>
+    <declare-styleable name="InputTextField">
+        <attr name="hint" format="string"/>
+        <attr name="drawable" format="reference"/>
+        <attr name="empty_message" format="string"/>
+        <attr name="invalid_message" format="string"/>
+    </declare-styleable>
+</resources>

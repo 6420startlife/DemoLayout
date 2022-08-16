@@ -2,7 +2,7 @@ package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room
 
 import android.content.Context
 import androidx.room.*
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.model.User
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
 
 @Database(entities = [User::class], version = 1)
 abstract class MyDatabase : RoomDatabase() {

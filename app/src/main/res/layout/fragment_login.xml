@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="userViewModel"
-            type="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.viewmodel.UserViewModel" />
+            type="com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsvLogin"
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:background="@color/white"
-        tools:context=".ui.login.view.login.LoginFragment">
+        tools:context=".ui.login.login.LoginFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutLoginFragment"
@@ -64,8 +64,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/hint_email_id"
                     android:inputType="textEmailAddress"
-                    android:paddingVertical="@dimen/normal_space"
-                    android:text="@={userViewModel.inputEmail}"/>
+                    android:paddingVertical="@dimen/normal_space"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -89,8 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-                    android:paddingVertical="@dimen/normal_space"
-                    android:text="@={userViewModel.inputPassword}"/>
+                    android:paddingVertical="@dimen/normal_space"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -196,17 +194,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/tvInfoRegister"
                 app:layout_constraintTop_toTopOf="@+id/tvInfoRegister" />
-
-            <ProgressBar
-                android:id="@+id/pbLogin"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:visibility="@{userViewModel.isUpdating() ? View.VISIBLE : View.GONE}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
