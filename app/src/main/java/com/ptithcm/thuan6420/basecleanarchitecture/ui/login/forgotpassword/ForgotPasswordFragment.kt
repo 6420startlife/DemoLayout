@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.ptithcm.thuan6420.basecleanarchitecture.R
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentForgotPasswordBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.BaseFragment
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.KEY_EMAIL_FORGOT
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 
 class ForgotPasswordFragment : BaseFragment() {
     private lateinit var binding: FragmentForgotPasswordBinding

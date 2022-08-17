@@ -3,8 +3,7 @@ package com.ptithcm.thuan6420.basecleanarchitecture.data.worker
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.App.Companion.appContext
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.home.FoodWorker
+import com.ptithcm.thuan6420.basecleanarchitecture.App.Companion.appContext
 import java.util.*
 import java.util.concurrent.TimeUnit
 

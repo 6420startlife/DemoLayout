@@ -1,4 +1,4 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.login
+package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.login
 
 data class ResponseUser(
     val email: String,

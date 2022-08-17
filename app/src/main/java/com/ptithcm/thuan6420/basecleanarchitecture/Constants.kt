@@ -1,9 +1,10 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.util
+package com.ptithcm.thuan6420.basecleanarchitecture
 
 import kotlinx.coroutines.Dispatchers
 
 object Constants {
     const val MESSAGE_ERROR_LOGIN = "Login Failed. Please try again"
+    const val MESSAGE_ERROR_LOADING = "Loading failed"
     const val MESSAGE_SUCCESS_LOGIN = "Login Success"
     const val MESSAGE_SUCCESS_REGISTER = "Successfully registered"
     const val MESSAGE_EMPTY_EMAIL = "Email not null"
@@ -20,7 +21,7 @@ object Constants {
 
     const val REGEX_PHONE_NUMBER = "^[0]{1}\\d{9}$"
     const val BASE_URL = "http://118.69.77.23:3002/"
-    val ioDispatcher = Dispatchers.IO
+    val IO_DISPATCHER = Dispatchers.IO
     const val DEFAULT_INTERVAL = 500L
 
     const val KEY_EMAIL_FORGOT = "email_forgot"

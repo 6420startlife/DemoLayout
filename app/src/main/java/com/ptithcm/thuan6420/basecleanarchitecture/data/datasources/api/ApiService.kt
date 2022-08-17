@@ -1,8 +1,8 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api
 
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.home.ResponseFood
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.login.ResponseLogin
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.login.ResponseRegister
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.login.ResponseLogin
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.login.ResponseRegister
 import retrofit2.Response
 import retrofit2.http.*
 

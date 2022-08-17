@@ -1,11 +1,10 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources
+package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences
 
 import com.google.gson.Gson
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.AppSharedPreferences
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.PREF_REGISTERED_USER
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.PREF_REGISTERED_USER
 
-class UserLocalDataSource() {
+class UserSharedPreferences() {
 
     fun getUserFromLocal(): User {
         val jsonUser = AppSharedPreferences.getSharedPreferencesValue(PREF_REGISTERED_USER)
@@ -18,12 +17,12 @@ class UserLocalDataSource() {
     }
 
     companion object {
-        private var Instance: UserLocalDataSource? = null
+        private var Instance: UserSharedPreferences? = null
         operator fun invoke() = synchronized(this) {
             if (Instance != null) {
                 Instance
             }
-            Instance = UserLocalDataSource()
+            Instance = UserSharedPreferences()
         }
     }
 }

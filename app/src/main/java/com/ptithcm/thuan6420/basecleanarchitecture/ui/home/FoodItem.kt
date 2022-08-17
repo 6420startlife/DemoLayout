@@ -2,7 +2,7 @@ package com.ptithcm.thuan6420.basecleanarchitecture.ui.home
 
 import android.view.View
 import com.ptithcm.thuan6420.basecleanarchitecture.R
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.home.ResponseProduct
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseProduct
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.ItemFoodBinding
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.viewbinding.BindableItem

@@ -1,6 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.home
 
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseFood
 
 interface HomeContact {
     interface PresenterInterface{

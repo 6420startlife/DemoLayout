@@ -1,12 +1,11 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources
+package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences
 
 import android.util.Log
 import com.google.gson.Gson
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.home.ResponseFood
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.AppSharedPreferences
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.PREF_FOOD
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.PREF_FOOD
 
-class FoodLocalDataSource() {
+class FoodSharedPreferences() {
 
     fun getFoodFromLocal(): ResponseFood {
         val jsonListFood = AppSharedPreferences.getSharedPreferencesValue(PREF_FOOD)
@@ -20,12 +19,12 @@ class FoodLocalDataSource() {
     }
 
     companion object {
-        private var Instance: FoodLocalDataSource? = null
+        private var Instance: FoodSharedPreferences? = null
         operator fun invoke() = synchronized(this) {
             if (Instance != null) {
                 Instance
             }
-            Instance = FoodLocalDataSource()
+            Instance = FoodSharedPreferences()
         }
     }
 }

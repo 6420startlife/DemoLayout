@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.RetrofitBuilder
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.home.ResponseFood
-import com.ptithcm.thuan6420.basecleanarchitecture.data.repositories.FoodRepository
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.data.worker.FoodWorker
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.ActivityHomeBinding
+import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 
 class HomeActivity : AppCompatActivity(), HomeContact.ViewInterface {
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var presenter: HomePresenter
+    private lateinit var viewModel: FoodViewModel
     private lateinit var groupAdapter: GroupAdapter<GroupieViewHolder>
     private lateinit var section: Section
     private lateinit var worker: PeriodicWorkRequest
@@ -31,11 +31,19 @@ class HomeActivity : AppCompatActivity(), HomeContact.ViewInterface {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initPresenter()
+        setViewModel()
         initRecyclerView()
         fetchingData()
         initEvent()
         initWorker()
+    }
+
+    private fun setViewModel() {
+        viewModel = ViewModelProvider(
+            this,
+            FoodViewModelFactory(
+                ApiHelper(RetrofitBuilder.apiService))
+        )[FoodViewModel::class.java]
     }
 
     private fun initWorker() {
@@ -49,9 +57,24 @@ class HomeActivity : AppCompatActivity(), HomeContact.ViewInterface {
         }
     }
 
-    private fun fetchingData() = lifecycleScope.launchWhenResumed {
-        val id = UserLocalDataSource().getUserFromLocal().id
-        presenter.onFetchingData(id)
+    private fun fetchingData() {
+        viewModel.fetchData().observe(this){
+            it?.let { resource ->
+                when(resource.status) {
+                    Status.SUCCESS -> {
+                        hideLoading()
+                        fetchData(resource.data)
+                    }
+                    Status.FAILED, Status.ERROR -> {
+                        hideLoading()
+                        showError(resource.message.toString())
+                    }
+                    Status.LOADING -> {
+                        showLoading()
+                    }
+                }
+            }
+        }
     }
 
     private fun initRecyclerView() {
@@ -64,10 +87,6 @@ class HomeActivity : AppCompatActivity(), HomeContact.ViewInterface {
             }
             adapter = groupAdapter
         }
-    }
-
-    private fun initPresenter() {
-        presenter = HomePresenter(FoodRepository(ApiHelper(RetrofitBuilder.apiService)), this)
     }
 
     override fun showLoading() {
@@ -103,10 +122,5 @@ class HomeActivity : AppCompatActivity(), HomeContact.ViewInterface {
     override fun onStop() {
         super.onStop()
         WorkManager.getInstance(this).enqueue(worker)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        WorkManager.getInstance(this).cancelAllWork()
     }
 }

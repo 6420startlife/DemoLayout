@@ -1,6 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api
 
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.BASE_URL
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

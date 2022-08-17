@@ -14,10 +14,12 @@ import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.Retrofit
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.MyDatabase
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentLoginBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.BaseFragment
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.isValidEmail
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.isValidPassword
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.home.HomeActivity
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModelFactory
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.KEY_EMAIL_FORGOT
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status.*
 
 class LoginFragment : BaseFragment() {
@@ -53,6 +55,11 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun login() {
+        if (binding.etEmailLoginLayout.isValidEmail()
+                .not() || binding.etPasswordLoginLayout.isValidPassword().not()
+        ) {
+            return
+        }
         val email = binding.etEmailLogin.text.toString()
         val password = binding.etPasswordLogin.text.toString()
         viewModel.login(email, password).observe(this) {

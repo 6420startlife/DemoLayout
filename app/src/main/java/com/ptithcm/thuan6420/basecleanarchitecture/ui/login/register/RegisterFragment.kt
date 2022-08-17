@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.MESSAGE_EMPTY_FULL_NAME
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.RetrofitBuilder
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.MyDatabase
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.BaseFragment
+import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.*
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModelFactory
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
@@ -38,10 +39,17 @@ class RegisterFragment : BaseFragment() {
     }
 
     private fun register() {
+        if (binding.etEmailRegisterLayout.isValidEmail().not() ||
+            binding.etPasswordRegisterLayout.isValidPassword().not() ||
+            binding.etFullNameRegisterLayout.isNotEmptyText(MESSAGE_EMPTY_FULL_NAME).not() ||
+            binding.etPhoneNumberRegisterLayout.isValidPhoneNumber().not()) {
+            return
+        }
         val email = binding.etEmailRegister.text.toString().trim()
         val password = binding.etPasswordRegister.text.toString()
-        val fullName = binding.etFullNameRegister.text.toString().trim()
+        val fullName = binding.etFullNameRegister.text.toString()
         val phoneNumber = binding.etPhoneNumberRegister.text.toString().trim().toLong()
+
         viewModel.register(email, password, fullName, phoneNumber).observe(this) {
             it?.let { resource ->
                 when (resource.status) {

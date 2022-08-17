@@ -1,6 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.repositories
 
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.UserLocalDataSource
+import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences.UserSharedPreferences
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
 import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.UserDao
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
@@ -29,17 +29,17 @@ class UserRepository(private val apiHelper: ApiHelper, private val dao: UserDao)
     }
 
     fun createUserBySharedPreferences(user: User) {
-        UserLocalDataSource().setUserFromLocal(user)
+        UserSharedPreferences().setUserFromLocal(user)
     }
 
     fun isMatchedUserSharedPreferences(user: User): Boolean {
-        val (id, email, password) = UserLocalDataSource().getUserFromLocal()
+        val (id, email, password) = UserSharedPreferences().getUserFromLocal()
         return (user.email == email
                 && user.password == password)
     }
 
     fun isExistedUserSharedPreferences(user: User): Boolean {
-        val (id, email) = UserLocalDataSource().getUserFromLocal()
+        val (id, email) = UserSharedPreferences().getUserFromLocal()
         return user.email == email
     }
 

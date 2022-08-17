@@ -1,8 +1,8 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences
 
 import android.content.Context
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.App
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Constants.APP_SHARED_PREFERENCES
+import com.ptithcm.thuan6420.basecleanarchitecture.App
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.APP_SHARED_PREFERENCES
 
 object AppSharedPreferences {
     fun putSharedPreferencesValue(key: String?, value: String?) {

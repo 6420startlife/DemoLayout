@@ -1,4 +1,4 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources
+package com.ptithcm.thuan6420.basecleanarchitecture
 
 import android.app.Application
 import android.content.Context
