@@ -5,11 +5,11 @@ import android.os.SystemClock
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.DialogListener
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.ErrorDialog
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.ProgressDialog
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.SuccessDialog
-import com.ptithcm.thuan6420.basecleanarchitecture.Constants
 
 abstract class BaseFragment : Fragment(), View.OnClickListener, DialogListener {
 

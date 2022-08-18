@@ -5,21 +5,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ptithcm.thuan6420.basecleanarchitecture.Constants.MESSAGE_EMPTY_FULL_NAME
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.RetrofitBuilder
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.MyDatabase
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.*
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModelFactory
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private lateinit var viewModel: UserViewModel
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,14 +33,14 @@ class RegisterFragment : BaseFragment() {
         binding.btnRegister.setOnClickListener(this)
         binding.layoutRegisterFragment.setOnClickListener(this)
         binding.tvToLogin.setOnClickListener(this)
-        setViewModel()
     }
 
     private fun register() {
         if (binding.etEmailRegisterLayout.isValidEmail().not() ||
             binding.etPasswordRegisterLayout.isValidPassword().not() ||
             binding.etFullNameRegisterLayout.isNotEmptyText(MESSAGE_EMPTY_FULL_NAME).not() ||
-            binding.etPhoneNumberRegisterLayout.isValidPhoneNumber().not()) {
+            binding.etPhoneNumberRegisterLayout.isValidPhoneNumber().not()
+        ) {
             return
         }
         val email = binding.etEmailRegister.text.toString().trim()
@@ -78,16 +76,6 @@ class RegisterFragment : BaseFragment() {
     override fun onClickOnSuccessDialog() {
         super.onClickOnSuccessDialog()
         navigateToLogin()
-    }
-
-    private fun setViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            UserViewModelFactory(
-                ApiHelper(RetrofitBuilder.apiService),
-                MyDatabase.getInstance(this.requireActivity().application).userDao
-            )
-        )[UserViewModel::class.java]
     }
 
     private fun navigateToLogin() {

@@ -1,12 +1,12 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.sharepreferences
+package com.ptithcm.thuan6420.basecleanarchitecture.data.sharepreferences
 
 import android.content.Context
-import com.ptithcm.thuan6420.basecleanarchitecture.App
 import com.ptithcm.thuan6420.basecleanarchitecture.Constants.APP_SHARED_PREFERENCES
+import javax.inject.Inject
 
-object AppSharedPreferences {
+class AppSharedPreferences @Inject constructor(val context: Context) {
     fun putSharedPreferencesValue(key: String?, value: String?) {
-        val sharedPreferences = App.appContext.getSharedPreferences(
+        val sharedPreferences = context.getSharedPreferences(
             APP_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
@@ -16,7 +16,7 @@ object AppSharedPreferences {
     }
 
     fun getSharedPreferencesValue(key: String?): String? {
-        val sharedPreferences = App.appContext.getSharedPreferences(
+        val sharedPreferences = context.getSharedPreferences(
             APP_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )

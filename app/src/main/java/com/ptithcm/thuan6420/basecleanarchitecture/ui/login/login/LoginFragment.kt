@@ -6,25 +6,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 import com.ptithcm.thuan6420.basecleanarchitecture.R
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.ApiHelper
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.RetrofitBuilder
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room.MyDatabase
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentLoginBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.BaseFragment
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.isValidEmail
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.isValidPassword
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.home.HomeActivity
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
-import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModelFactory
-import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status.*
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginFragment : BaseFragment() {
     private lateinit var binding: FragmentLoginBinding
-    private lateinit var viewModel: UserViewModel
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,23 +33,12 @@ class LoginFragment : BaseFragment() {
         return binding.root
     }
 
-    private fun setViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            UserViewModelFactory(
-                ApiHelper(RetrofitBuilder.apiService),
-                MyDatabase.getInstance(this.requireActivity().application).userDao
-            )
-        )[UserViewModel::class.java]
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnLogin.setOnClickListener(this)
         binding.tvToRegister.setOnClickListener(this)
         binding.layoutLoginFragment.setOnClickListener(this)
         binding.tvForgot.setOnClickListener(this)
-        setViewModel()
     }
 
     private fun login() {

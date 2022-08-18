@@ -1,8 +1,8 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api
+package com.ptithcm.thuan6420.basecleanarchitecture.data.network
 
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.home.ResponseFood
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.login.ResponseLogin
-import com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.api.dto.login.ResponseRegister
+import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.login.LoginResponse
+import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.login.RegisterResponse
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -16,7 +16,7 @@ interface ApiService {
     suspend fun login(
         @Field("email") email : String?,
         @Field("password") password : String?
-    ): Response<ResponseLogin>
+    ): Response<LoginResponse>
 
     @FormUrlEncoded
     @POST("auth/register")
@@ -25,5 +25,5 @@ interface ApiService {
         @Field("password") password : String?,
         @Field("name") name : String,
         @Field("phone_number") phoneNumber : Number
-    ): Response<ResponseRegister>
+    ): Response<RegisterResponse>
 }

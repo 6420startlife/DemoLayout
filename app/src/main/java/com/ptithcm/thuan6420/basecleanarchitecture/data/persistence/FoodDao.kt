@@ -1,14 +1,14 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.data.datasources.room
+package com.ptithcm.thuan6420.basecleanarchitecture.data.persistence
 
 import androidx.room.*
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
+import kotlinx.coroutines.flow.Flow
 
-@Dao
-interface UserDao {
-    @Query("SELECT * FROM user_table")
-    suspend fun getAll() : List<User>
+interface FoodDao {
+    @Query("SELECT * FROM product_table")
+    suspend fun getAll() : Flow<List<User>>
 
-    @Query("SELECT * FROM user_table WHERE user_email LIKE (:email)")
+    @Query("SELECT * FROM product_table WHERE id_product LIKE (:email)")
     suspend fun findByEmail(email : String) : User
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -19,5 +19,4 @@ interface UserDao {
 
     @Delete
     suspend fun deleteAnUser(user: User)
-
 }
