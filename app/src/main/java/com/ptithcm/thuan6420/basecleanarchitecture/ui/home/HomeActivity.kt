@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
-import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.home.ResponseFood
+import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.home.ResponseListMenu
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.ActivityHomeBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
 import com.xwray.groupie.GroupAdapter
@@ -51,7 +51,7 @@ class HomeActivity : AppCompatActivity() {
                 when(resource.status) {
                     Status.SUCCESS -> {
                         hideLoading()
-                        fetchData(resource.data as ResponseFood?)
+                        fetchData(resource.data as ResponseListMenu?)
                     }
                     Status.FAILED, Status.ERROR -> {
                         hideLoading()
@@ -90,9 +90,9 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this@HomeActivity, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun fetchData(data: ResponseFood?) {
+    private fun fetchData(data: ResponseListMenu?) {
         section = Section()
-        data?.data?.menus?.forEach { it ->
+        data?.menus?.forEach { it ->
             section.setHeader(HeaderFoodItem(it.userName))
             it.products.forEach {
                 section.add(FoodItem(it))
