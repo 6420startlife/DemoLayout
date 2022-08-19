@@ -7,13 +7,12 @@ import androidx.work.WorkerParameters
 import com.ptithcm.thuan6420.basecleanarchitecture.data.repositories.FoodRepository
 import com.ptithcm.thuan6420.basecleanarchitecture.data.repositories.UserRepository
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Network
-import javax.inject.Inject
 
-class FoodWorker(context: Context, workerParams: WorkerParameters) :
+class FoodWorker(context: Context, workerParams: WorkerParameters,
+                 private val foodRepository: FoodRepository,
+                 private val userRepository: UserRepository,
+                 private val network: Network) :
     CoroutineWorker(context, workerParams) {
-    @Inject lateinit var foodRepository: FoodRepository
-    @Inject lateinit var userRepository: UserRepository
-    @Inject lateinit var network: Network
 
     fun fetchData() = foodRepository.fetchFood(userId = userRepository.getUserFromLocal().id ?: 0,
         isConnected = { network.isConnected() },

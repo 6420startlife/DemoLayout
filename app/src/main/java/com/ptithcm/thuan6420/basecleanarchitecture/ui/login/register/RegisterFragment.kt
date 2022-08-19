@@ -5,19 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ptithcm.thuan6420.basecleanarchitecture.Constants.MESSAGE_EMPTY_FULL_NAME
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.*
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class RegisterFragment : BaseFragment() {
     private lateinit var binding: FragmentRegisterBinding
-    private val viewModel: UserViewModel by viewModels()
+    private val viewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

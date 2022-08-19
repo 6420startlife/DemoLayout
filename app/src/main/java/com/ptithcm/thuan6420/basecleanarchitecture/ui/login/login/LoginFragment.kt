@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 import com.ptithcm.thuan6420.basecleanarchitecture.R
@@ -17,12 +16,11 @@ import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.isValidPassword
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.home.HomeActivity
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Status.*
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class LoginFragment : BaseFragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel: UserViewModel by viewModels()
+    private val viewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,

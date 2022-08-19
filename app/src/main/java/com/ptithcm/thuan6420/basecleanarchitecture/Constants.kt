@@ -22,7 +22,7 @@ object Constants {
     const val REGEX_PHONE_NUMBER = "^[0]{1}\\d{9}$"
     const val BASE_URL = "http://118.69.77.23:3002/"
     val IO_DISPATCHER = Dispatchers.IO
-    const val DEFAULT_INTERVAL = 500L
+    const val DEFAULT_INTERVAL = 1500L
 
     const val KEY_EMAIL_FORGOT = "email_forgot"
     const val APP_SHARED_PREFERENCES = "APP_SHARED_PREFERENCES"

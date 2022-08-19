@@ -9,10 +9,9 @@ import com.ptithcm.thuan6420.basecleanarchitecture.data.dto.home.ResponseFood
 import com.ptithcm.thuan6420.basecleanarchitecture.data.network.ApiHelper
 import com.ptithcm.thuan6420.basecleanarchitecture.data.sharepreferences.AppSharedPreferences
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Resource
-import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class FoodRepository @Inject constructor(
+class FoodRepository constructor(
     private val apiHelper: ApiHelper,
     private val appSharedPreferences: AppSharedPreferences,
     private val coroutineContext: CoroutineContext

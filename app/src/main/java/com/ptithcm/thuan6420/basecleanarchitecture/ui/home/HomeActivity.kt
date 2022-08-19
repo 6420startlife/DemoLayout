@@ -3,7 +3,6 @@ package com.ptithcm.thuan6420.basecleanarchitecture.ui.home
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.work.PeriodicWorkRequest
@@ -14,14 +13,13 @@ import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Section
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.viewModel
 
-@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel: FoodViewModel by viewModels()
-    @Inject lateinit var worker: PeriodicWorkRequest
+    private val viewModel: FoodViewModel by viewModel()
+    private val worker: PeriodicWorkRequest by inject()
     private lateinit var groupAdapter: GroupAdapter<GroupieViewHolder>
     private lateinit var section: Section
 

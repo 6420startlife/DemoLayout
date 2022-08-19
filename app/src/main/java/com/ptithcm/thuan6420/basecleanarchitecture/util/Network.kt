@@ -3,9 +3,8 @@ package com.ptithcm.thuan6420.basecleanarchitecture.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import javax.inject.Inject
 
-class Network @Inject constructor(val context: Context) {
+class Network constructor(val context: Context) {
 
     fun isConnected(): Boolean {
         val connectivityManager =

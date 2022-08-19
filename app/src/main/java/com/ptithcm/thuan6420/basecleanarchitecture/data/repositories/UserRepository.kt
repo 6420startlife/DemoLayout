@@ -13,10 +13,9 @@ import com.ptithcm.thuan6420.basecleanarchitecture.data.sharepreferences.AppShar
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.User
 import com.ptithcm.thuan6420.basecleanarchitecture.util.Resource
 import kotlinx.coroutines.delay
-import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-class UserRepository @Inject constructor(private val apiHelper: ApiHelper,
+class UserRepository constructor(private val apiHelper: ApiHelper,
                                          private val dao: UserDao,
                                          private val appSharedPreferences: AppSharedPreferences,
                                          private val coroutineContext: CoroutineContext) {
