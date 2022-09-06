@@ -24,7 +24,7 @@
     <string name="message_error_login">Login failed. Please register.</string>
     <string name="message_success_login">Login successfully</string>
     <string name="message_success_register">Register successfully</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="success">Success</string>
     <string name="error">Error</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -35,5 +35,13 @@
     <string name="string_username">Create by KienTT</string>
     <string name="string_name_food">Bánh pizza</string>
     <string name="string_price_food">20.000đ</string>
+
+
+    <string name="facebook_app_id">591318409135906</string>
+    <string name="fb_login_protocol_scheme">fb591318409135906</string>
+    <string name="facebook_client_token">9b5c52d5bfdd83e6d1a5d2294c712225</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="take_camera">take camera</string>
+    <string name="image_took">image took</string>
 
 </resources>

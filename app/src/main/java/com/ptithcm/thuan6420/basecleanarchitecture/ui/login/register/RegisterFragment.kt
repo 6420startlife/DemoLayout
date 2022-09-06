@@ -1,7 +1,6 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.ui.login.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,10 @@ import com.ptithcm.thuan6420.basecleanarchitecture.Constants.MESSAGE_EMPTY_FULL_
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentRegisterBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.*
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.login.UserViewModel
-import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
+import com.ptithcm.thuan6420.basecleanarchitecture.util.isNotEmptyText
+import com.ptithcm.thuan6420.basecleanarchitecture.util.isValidEmail
+import com.ptithcm.thuan6420.basecleanarchitecture.util.isValidPassword
+import com.ptithcm.thuan6420.basecleanarchitecture.util.isValidPhoneNumber
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,26 +51,8 @@ class RegisterFragment : BaseFragment() {
         val phoneNumber = binding.etPhoneNumberRegister.text.toString().trim().toLong()
 
         viewModel.register(email, password, fullName, phoneNumber).observe(this) {
-            it?.let { resource ->
-                when (resource.status) {
-                    Status.SUCCESS -> {
-                        hideProgressDialog()
-                        showSuccessDialog(resource.message)
-                    }
-                    Status.FAILED -> {
-                        hideProgressDialog()
-                        showErrorDialog(resource.message)
-                    }
-                    Status.ERROR -> {
-                        hideProgressDialog()
-                        showErrorDialog(resource.message)
-                        Log.e("T64", resource.message.toString())
-                    }
-                    Status.LOADING -> {
-                        closeKeyBoard()
-                        showProgressDialog()
-                    }
-                }
+            it?.let {
+                submit(it.status, it.message, it.data)
             }
         }
     }

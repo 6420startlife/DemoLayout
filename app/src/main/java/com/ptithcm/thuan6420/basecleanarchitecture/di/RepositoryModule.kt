@@ -10,7 +10,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
-import kotlin.coroutines.CoroutineContext
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -20,16 +19,14 @@ object RepositoryModule {
     @ViewModelScoped
     fun provideUserRepository(apiHelper: ApiHelper,
                               userDao: UserDao,
-                              appSharedPreferences: AppSharedPreferences,
-                              coroutineContext: CoroutineContext): UserRepository {
-        return UserRepository(apiHelper, userDao, appSharedPreferences, coroutineContext)
+                              appSharedPreferences: AppSharedPreferences): UserRepository {
+        return UserRepository(apiHelper, userDao, appSharedPreferences)
     }
 
     @Provides
     @ViewModelScoped
     fun provideFoodRepository(apiHelper: ApiHelper,
-                              appSharedPreferences: AppSharedPreferences,
-                              coroutineContext: CoroutineContext): FoodRepository {
-        return FoodRepository(apiHelper, appSharedPreferences, coroutineContext)
+                              appSharedPreferences: AppSharedPreferences): FoodRepository {
+        return FoodRepository(apiHelper, appSharedPreferences)
     }
 }

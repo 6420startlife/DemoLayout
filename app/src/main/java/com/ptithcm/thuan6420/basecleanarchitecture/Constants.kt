@@ -1,7 +1,5 @@
 package com.ptithcm.thuan6420.basecleanarchitecture
 
-import kotlinx.coroutines.Dispatchers
-
 object Constants {
     const val MESSAGE_ERROR_LOGIN = "Login Failed. Please try again"
     const val MESSAGE_ERROR_LOADING = "Loading failed"
@@ -21,11 +19,15 @@ object Constants {
 
     const val REGEX_PHONE_NUMBER = "^[0]{1}\\d{9}$"
     const val BASE_URL = "http://118.69.77.23:3002/"
-    val IO_DISPATCHER = Dispatchers.IO
     const val DEFAULT_INTERVAL = 500L
 
     const val KEY_EMAIL_FORGOT = "email_forgot"
     const val APP_SHARED_PREFERENCES = "APP_SHARED_PREFERENCES"
     const val PREF_REGISTERED_USER = "PREF_REGISTERED_USER"
     const val PREF_FOOD = "PREF_FOOD"
+    const val CHANNEL_ID = "push_notifications_channel_id"
+    const val RC_SIGN_IN = 100
+    const val REQUEST_CODE_PERMISSION = 109
+    const val FILE_NAME_FORMAT = "dd/MM/yyyy HH:mm:ss"
+
 }

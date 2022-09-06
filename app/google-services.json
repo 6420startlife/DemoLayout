@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "950007964170",
+    "project_id": "fir-6fa91",
+    "storage_bucket": "fir-6fa91.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950007964170:android:b5c4478704638e1fe475f3",
+        "android_client_info": {
+          "package_name": "com.ptithcm.thuan6420.basecleanarchitecture"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950007964170-vqfu5iqdevduq4ight5q66ckr9d8eo7c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj1x5omBtetljYk4Gy7O8RdOXn5m6SQVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950007964170-vqfu5iqdevduq4ight5q66ckr9d8eo7c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,7 @@
 package com.ptithcm.thuan6420.basecleanarchitecture.di
 
 import android.content.Context
+import com.facebook.CallbackManager
 import com.ptithcm.thuan6420.basecleanarchitecture.Constants
 import com.ptithcm.thuan6420.basecleanarchitecture.data.network.ApiHelper
 import com.ptithcm.thuan6420.basecleanarchitecture.data.network.ApiService
@@ -42,5 +43,11 @@ object NetworkModule {
     @Singleton
     fun provideApiHelper(apiService: ApiService): ApiHelper {
         return ApiHelper((apiService))
+    }
+
+    @Provides
+    @Singleton
+    fun provideCallbackManager(): CallbackManager {
+        return CallbackManager.Factory.create()
     }
 }

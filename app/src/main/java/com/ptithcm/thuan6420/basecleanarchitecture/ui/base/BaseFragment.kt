@@ -10,6 +10,8 @@ import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.DialogListene
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.ErrorDialog
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.ProgressDialog
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.dialogs.SuccessDialog
+import com.ptithcm.thuan6420.basecleanarchitecture.util.Status
+import com.ptithcm.thuan6420.basecleanarchitecture.util.Status.*
 
 abstract class BaseFragment : Fragment(), View.OnClickListener, DialogListener {
 
@@ -51,6 +53,29 @@ abstract class BaseFragment : Fragment(), View.OnClickListener, DialogListener {
         }
         lastTimeClicked = SystemClock.elapsedRealtime()
         onSingleClick(v)
+    }
+
+    fun submit(status: Status, message: String?, data: Any?) {
+        when(status) {
+            SUCCESS -> onSuccess(message, data)
+            LOADING -> onLoading()
+            ERROR -> onError(message)
+        }
+    }
+
+    open fun onError(message: String?) {
+        hideProgressDialog()
+        showErrorDialog(message)
+    }
+
+    open fun onLoading() {
+        closeKeyBoard()
+        showProgressDialog()
+    }
+
+    open fun onSuccess(message: String?, data: Any?) {
+        hideProgressDialog()
+        showSuccessDialog(message)
     }
 
     override fun onClickOnSuccessDialog() {}

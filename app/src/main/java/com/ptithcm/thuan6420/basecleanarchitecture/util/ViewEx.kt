@@ -1,4 +1,4 @@
-package com.ptithcm.thuan6420.basecleanarchitecture.ui.base
+package com.ptithcm.thuan6420.basecleanarchitecture.util
 
 import android.util.Patterns
 import com.google.android.material.textfield.TextInputLayout

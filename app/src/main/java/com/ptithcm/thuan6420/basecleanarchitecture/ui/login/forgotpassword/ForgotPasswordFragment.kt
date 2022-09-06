@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
-import com.ptithcm.thuan6420.basecleanarchitecture.R
+import androidx.navigation.fragment.findNavController
+import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 import com.ptithcm.thuan6420.basecleanarchitecture.databinding.FragmentForgotPasswordBinding
 import com.ptithcm.thuan6420.basecleanarchitecture.ui.base.BaseFragment
-import com.ptithcm.thuan6420.basecleanarchitecture.Constants.KEY_EMAIL_FORGOT
 
 class ForgotPasswordFragment : BaseFragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
@@ -32,8 +31,7 @@ class ForgotPasswordFragment : BaseFragment() {
     }
 
     private fun navigateToLogin() {
-        NavHostFragment.findNavController(this@ForgotPasswordFragment)
-            .navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
+        findNavController().navigateUp()
     }
 
     override fun onClick(v: View?) {

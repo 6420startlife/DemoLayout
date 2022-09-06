@@ -34,17 +34,21 @@
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout-land/dialog_error.xml" value="0.13039760581445062" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout-land/dialog_progress.xml" value="0.13039760581445062" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout-v26/fragment_register.xml" value="0.12" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_camera.xml" value="0.185856754306437" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_home.xml" value="0.2" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_login.xml" value="0.1486854034451496" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/activity_picture.xml" value="0.185856754306437" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/component_email_text_field.xml" value="0.13825929283771532" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/component_input_text_field.xml" value="0.264" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/component_password_text_field.xml" value="0.13825929283771532" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/component_phone_number_text_field.xml" value="0.13825929283771532" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/dialog_error.xml" value="0.13825929283771532" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/dialog_image.xml" value="0.185856754306437" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/dialog_success.xml" value="0.13825929283771532" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_blank.xml" value="0.19384057971014493" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_forgot_password.xml" value="0.152" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_register.xml" value="0.2361111111111111" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/fragment_scrolling.xml" value="0.2128205128205128" />
@@ -56,6 +60,7 @@
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_home_item.xml" value="0.13825929283771532" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_login.xml" value="0.2269021739130435" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/layout_success_dialog.xml" value="0.2269021739130435" />
+        <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/marker_info_content.xml" value="0.14913871260199457" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/progress_bar.xml" value="0.176" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/layout/progressbar.xml" value="0.14990942028985507" />
         <entry key="..\:/Apps Mobile/BaseCleanArchitecture/app/src/main/res/menu/menu_only_back.xml" value="0.8666666666666667" />
